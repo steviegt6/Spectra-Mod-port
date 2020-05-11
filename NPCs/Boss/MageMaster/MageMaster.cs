@@ -140,14 +140,12 @@ namespace SpectraMod.NPCs.Boss.MageMaster
                         switch (NextAttack)
                         {
                             case AttackType.Basic:
-                                Main.NewText("BasicAtk");
                                 Projectile.NewProjectile(npc.Center, dir * 4f, ModContent.ProjectileType<ShadowflareBolt>(), 4, 0.5f);
                                 Main.PlaySound(SoundID.Item9);
                                 if (NotMPClient) AttackTimes++;
                                 break;
 
                             case AttackType.Bouncing:
-                                Main.NewText("BounceAtk");
                                 Projectile.NewProjectile(npc.Center, dir * 4f, ModContent.ProjectileType<ShadowflareBounce>(), 4, 0.5f);
                                 Main.PlaySound(SoundID.Item9);
                                 if (NotMPClient) AttackTimes++;
@@ -155,7 +153,7 @@ namespace SpectraMod.NPCs.Boss.MageMaster
 
                             case AttackType.BasicSpread:
                                 if (NotMPClient) IsAttacking = true;
-                                Main.NewText("SpreadAtk");
+                                //SpectraHelper.ProjSpread(npc.Center, dir, 2f, 9, 45, ModContent.ProjectileType<ShadowflareBolt>(), 4, 1f, 255, 0, 0);
                                 float numberProjectiles = (Main.expertMode ? 4 : 3) + (HalfHealth ? 1 : 0);
                                 float rotation = MathHelper.ToRadians(45);
                                 Vector2 position = npc.Center;
@@ -170,7 +168,6 @@ namespace SpectraMod.NPCs.Boss.MageMaster
                                 break;
 
                             case AttackType.Shower:
-                                Main.NewText("ShowerAtk");
                                 Vector2 loc = target.Center - new Vector2(192, 704);
                                 for (int j = 0; j < (HalfHealth ? 7 : 5) + (Main.expertMode ? 2 : 0); j++)
                                 {
@@ -185,19 +182,13 @@ namespace SpectraMod.NPCs.Boss.MageMaster
                                 break;
 
                             case AttackType.Homing:
-                                Main.NewText("HomingAtk");
                                 Projectile.NewProjectile(npc.Center, dir, ModContent.ProjectileType<ShadowflareHome>(), 4, 1f, 255, npc.target);
                                 Main.PlaySound(SoundID.Item9);
                                 if (NotMPClient) AttackTimes++;
                                 break;
 
                             case AttackType.Circle:
-                                Main.NewText("CircleAtk");
-                                for (int n = 0; n < 8; n++)
-                                {
-                                    Vector2 thisDir = dir.RotatedBy(MathHelper.ToRadians(45 * n));
-                                    Projectile.NewProjectile(npc.Center, thisDir, ModContent.ProjectileType<ShadowflareBolt>(), 4, 1f);
-                                }
+                                SpectraHelper.ProjInCircle(npc.Center, dir, 4f, 9, ModContent.ProjectileType<ShadowflareBolt>(), 6, 1f, 255, 0, 0);
                                 Main.PlaySound(SoundID.Item9);
                                 if (NotMPClient) AttackTimes++;
                                 break;
@@ -289,7 +280,8 @@ namespace SpectraMod.NPCs.Boss.MageMaster
                     npc.noTileCollide = false;
                     npc.alpha = 10;
                     npc.velocity = new Vector2(0, 4f);
-                    if (AI_Timer == 360)
+                    Main.NewText(AI_Timer.ToString());
+                    if (AI_Timer >= 360)
                     {
                         RageTimes++;
                     }

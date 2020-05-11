@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace SpectraMod.NPCs
+namespace SpectraMod.NPCs.Slimes
 {
     public class PearlsandSlime : ModNPC
     {
@@ -34,6 +34,7 @@ namespace SpectraMod.NPCs
         public override void NPCLoot()
         {
             Item.NewItem(npc.getRect(), ItemID.Gel);
+            SpectraHelper.AttemptSlimeStaff(npc, 485);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

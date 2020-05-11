@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace SpectraMod.Items.Materials
 {
-    public class ShadowGel : ModItem
+    public class BlackGel : ModItem
     {
         public override void SetStaticDefaults()
         {

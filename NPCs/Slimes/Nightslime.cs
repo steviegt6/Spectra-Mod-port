@@ -5,9 +5,9 @@ using Microsoft.Xna.Framework;
 using SpectraMod.Items.Materials;
 using SpectraMod.Items.Banner;
 
-namespace SpectraMod.NPCs
+namespace SpectraMod.NPCs.Slimes
 {
-    public class Darkslime : ModNPC
+    public class Nightslime : ModNPC
     {
         public override void SetStaticDefaults()
         {
@@ -36,7 +36,7 @@ namespace SpectraMod.NPCs
         public override void NPCLoot()
         {
             int amount = Main.expertMode ? 2 : 1;
-            Item.NewItem(npc.getRect(), ModContent.ItemType<ShadowGel>(), amount);
+            Item.NewItem(npc.getRect(), ModContent.ItemType<BlackGel>(), amount);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

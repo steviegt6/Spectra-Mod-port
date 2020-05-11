@@ -3,9 +3,10 @@ using SpectraMod.Items.Banner;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-namespace SpectraMod.NPCs
+
+namespace SpectraMod.NPCs.Slimes
 {
-    public class CrimsandSlime : ModNPC
+    public class EbonsandSlime : ModNPC
     {
         public override void SetStaticDefaults()
         {
@@ -19,7 +20,7 @@ namespace SpectraMod.NPCs
             npc.aiStyle = 1;
             animationType = NPCID.SandSlime;
             banner = npc.type;
-            bannerItem = ModContent.ItemType<CrimsandSlimeBanner>();
+            bannerItem = ModContent.ItemType<EbonsandSlimeBanner>();
             if (!Main.hardMode) npc.lifeMax = 75;
             else npc.lifeMax = 150;
         }
@@ -33,11 +34,12 @@ namespace SpectraMod.NPCs
         public override void NPCLoot()
         {
             Item.NewItem(npc.getRect(), ItemID.Gel);
+            SpectraHelper.AttemptSlimeStaff(npc, 500);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return (spawnInfo.player.ZoneDesert && spawnInfo.player.ZoneCrimson) ? SpawnCondition.OverworldDayDesert.Chance * 1.5f : 0f;
+            return (spawnInfo.player.ZoneDesert && spawnInfo.player.ZoneCorrupt) ? SpawnCondition.OverworldDayDesert.Chance * 1.5f : 0f;
         }
     }
 }
