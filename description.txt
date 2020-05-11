@@ -1,0 +1,44 @@
+Spectra mod is a port of the terraria fan mod "Spectra Mod" to tModLoader.
+
+Original spectra mod items, bosses, and ideas by DiagnosticLord and OreoV2. The original fan wiki can be found here: https://terraria-spectra-mod.fandom.com/wiki/Terraria_Spectra_Mod_Wiki.
+Please note that the original spectra mod wiki's information may not be accurate for this port.
+
+
+I do not claim to have invented any of the original spectra mod ideas, and all bosses, items, buffs, dialogue, mechanics, and names belong to their original creator.
+
+Credits:
+ - Original spectra mod creators:
+   * [c/ff0000:DiagnosticLord]: Original spectra mod fan wiki, majority of content ideas
+   * [c/ff4242:OreoV2]: Important member of the spectra mod wiki, current maintainer
+   * [c/ff4242:Kandykitty]: Important member of the spectra mod wiki, current maintainer
+   * The whole spectra mod community for working on the wiki
+ - Spectra Mod for tModLoader porters:
+   * [c/2bffa0:pbone]: Coder, spriter, & founder of the Spectra Mod tModLoader port
+   * [c/ffb600:MartinPlayz]: Spriter for the port & member of the original wiki
+ - The Terraria team & Relogic for making this game
+ - The tModLoader team and all of its contributors for making this mod loader
+
+Changelog:
+ - v0.2.0.0
+   * Added a permanent power-up
+   * Added Dark slimes
+   * Removed Liquid Hatred
+   * Dark mask is now craftable with any wood
+   * Fixed a slight animation bug on Unlucky Tomb
+   * Added delighted bars
+   * Added Lovely Hat
+   * Added survivor's bars
+   * Added greater pygmy necklace
+   * Added Map Icon, Mask, and Trophy to grave robber
+   * Added a special expert mode effect to grave robber
+   * Grave robber now only drops his machete
+   * Added survivor's pickaxe
+   * Many resprites
+ - v0.1.2
+   * Whoops
+ - v0.1.1
+   * Added Liquid Hatred, used to make Dark Mask
+   * Added Dark Mask, better way to summon Grave Robber
+ - v0.1
+   * Lauched!
+   * Added the Grave Robber and his drops

@@ -1,0 +1,4 @@
+displayName = Spectra Mod
+author = pbone, DiagnosticLord, & OreoV2
+version = 0.3.0.0
+homepage = https://discord.gg/uJ9F45U
