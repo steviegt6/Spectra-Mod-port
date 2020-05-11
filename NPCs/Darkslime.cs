@@ -23,8 +23,8 @@ namespace SpectraMod.NPCs
             animationType = NPCID.BlueSlime;
             banner = npc.type;
             bannerItem = ModContent.ItemType<DarkslimeBanner>();
-            if (!Main.hardMode) npc.lifeMax = 100;
-            else npc.lifeMax = NPC.downedPlantBoss ? 200 : 300;
+            if (!Main.hardMode) npc.lifeMax = 124;
+            else npc.lifeMax = NPC.downedPlantBoss ? 506 : 248;
         }
 
         public override void ModifyHitPlayer(Player target, ref int damage, ref bool crit)

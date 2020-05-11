@@ -21,8 +21,8 @@ namespace SpectraMod.NPCs
             animationType = NPCID.SandSlime;
             banner = npc.type;
             bannerItem = ModContent.ItemType<PearlsandSlimeBanner>();
-            if (!Main.hardMode) npc.lifeMax = 80;
-            else npc.lifeMax = 160;
+            if (!Main.hardMode) npc.lifeMax = 85;
+            else npc.lifeMax = 170;
         }
 
         public override void ModifyHitPlayer(Player target, ref int damage, ref bool crit)
