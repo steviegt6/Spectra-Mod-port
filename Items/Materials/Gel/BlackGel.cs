@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 
-namespace SpectraMod.Items.Materials
+namespace SpectraMod.Items.Materials.Gel
 {
     public class BlackGel : ModItem
     {
