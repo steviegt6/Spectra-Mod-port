@@ -19,7 +19,6 @@ namespace SpectraMod.Buffs.Debuffs
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
-            Main.NewText("e");
             if (Hated)
             {
                 // Less damage here sometime

@@ -21,9 +21,9 @@ namespace SpectraMod.NPCs.Boss.MageMaster
             npc.boss = true;
             npc.aiStyle = -1;
             npc.Size = new Vector2(30, 52);
-            npc.lifeMax = 3600;
-            npc.defense = 15;
-            npc.damage = 4;
+            npc.lifeMax = 3000;
+            npc.defense = 10;
+            npc.damage = 28;
             npc.knockBackResist = 0f;
             npc.noGravity = true;
             npc.noTileCollide = true;
@@ -49,6 +49,7 @@ namespace SpectraMod.NPCs.Boss.MageMaster
         private int AttackTimes;
         private int AttackDelay;
         private int RageTimes;
+        private int DefaultDamage;
         private AttackType NextAttack;
 
         private const int State_FindTarget = 0;
@@ -62,8 +63,8 @@ namespace SpectraMod.NPCs.Boss.MageMaster
 
         private enum AttackType : byte
         {
-            Basic,
             Bouncing,
+            Basic,
             BasicSpread,
             Shower,
             Homing,
@@ -128,7 +129,11 @@ namespace SpectraMod.NPCs.Boss.MageMaster
                     }
 
                     MaxAttacks = 4;
+                    DefaultDamage = 8;
                     AttackDelay = (Main.expertMode ? 80 : 100);
+                    if (HalfHealth) MaxAttacks = 6;
+                    if (HalfHealth) AttackDelay = (Main.expertMode ? 60 : 80);
+                    if (HalfHealth) DefaultDamage = 10;
 
                     AI_Timer++;
                 }
@@ -139,14 +144,14 @@ namespace SpectraMod.NPCs.Boss.MageMaster
                     {
                         switch (NextAttack)
                         {
-                            case AttackType.Basic:
-                                Projectile.NewProjectile(npc.Center, dir * 4f, ModContent.ProjectileType<ShadowflareBolt>(), 4, 0.5f);
+                            case AttackType.Bouncing:
+                                Projectile.NewProjectile(npc.Center, dir * 4f, ModContent.ProjectileType<ShadowflareBounce>(), DefaultDamage, 0.5f);
                                 Main.PlaySound(SoundID.Item9);
                                 if (NotMPClient) AttackTimes++;
                                 break;
 
-                            case AttackType.Bouncing:
-                                Projectile.NewProjectile(npc.Center, dir * 4f, ModContent.ProjectileType<ShadowflareBounce>(), 4, 0.5f);
+                            case AttackType.Basic:
+                                Projectile.NewProjectile(npc.Center, dir * 4f, ModContent.ProjectileType<ShadowflareBolt>(), DefaultDamage, 0.5f);
                                 Main.PlaySound(SoundID.Item9);
                                 if (NotMPClient) AttackTimes++;
                                 break;
@@ -160,35 +165,35 @@ namespace SpectraMod.NPCs.Boss.MageMaster
                                 position += Vector2.Normalize(dir) * 45f;
                                 for (int i = 0; i < numberProjectiles; i++)
                                 {
-                                    Vector2 perturbedSpeed = dir.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * 2f;
-                                    Projectile.NewProjectile(position, perturbedSpeed, ModContent.ProjectileType<ShadowflareBolt>(), 4, 1f);
+                                    Vector2 perturbedSpeed = dir.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * 3f;
+                                    Projectile.NewProjectile(position, perturbedSpeed, ModContent.ProjectileType<ShadowflareBolt>(), DefaultDamage, 1f);
                                 }
                                 Main.PlaySound(SoundID.Item9);
                                 if (NotMPClient) AttackTimes++;
                                 break;
 
                             case AttackType.Shower:
-                                Vector2 loc = target.Center - new Vector2(192, 704);
+                                Vector2 loc = target.Center - new Vector2(240, 704);
                                 for (int j = 0; j < (HalfHealth ? 7 : 5) + (Main.expertMode ? 2 : 0); j++)
                                 {
                                     bool noZeroDiv = j == 0;
                                     Vector2 pos;
                                     if (noZeroDiv) pos = loc;
-                                    else pos = loc + new Vector2(64 * j, 0);
-                                    Projectile.NewProjectile(pos, new Vector2(0, 4), ModContent.ProjectileType<ShadowflareBolt>(), 4, 1f);
+                                    else pos = loc + new Vector2(80 * j, 0);
+                                    Projectile.NewProjectile(pos, new Vector2(0, 4), ModContent.ProjectileType<ShadowflareBolt>(), DefaultDamage, 1f);
                                 }
                                 Main.PlaySound(SoundID.Item9);
                                 if (NotMPClient) AttackTimes++;
                                 break;
 
                             case AttackType.Homing:
-                                Projectile.NewProjectile(npc.Center, dir, ModContent.ProjectileType<ShadowflareHome>(), 4, 1f, 255, npc.target);
+                                Projectile.NewProjectile(npc.Center, dir, ModContent.ProjectileType<ShadowflareHome>(), DefaultDamage, 1f, 255, npc.target);
                                 Main.PlaySound(SoundID.Item9);
                                 if (NotMPClient) AttackTimes++;
                                 break;
 
                             case AttackType.Circle:
-                                SpectraHelper.ProjInCircle(npc.Center, dir, 4f, 9, ModContent.ProjectileType<ShadowflareBolt>(), 6, 1f, 255, 0, 0);
+                                SpectraHelper.ProjInCircle(npc.Center, dir, 4f, 9, ModContent.ProjectileType<ShadowflareBolt>(), DefaultDamage, 1f, 255, 0, 0);
                                 Main.PlaySound(SoundID.Item9);
                                 if (NotMPClient) AttackTimes++;
                                 break;
@@ -259,10 +264,10 @@ namespace SpectraMod.NPCs.Boss.MageMaster
                 if (RageTimes == 8)
                 {
                     npc.Center = Main.player[npc.target].Center + new Vector2(350, 0);
-                    for (int r = 0; r < 3; r++) Dust.NewDust(npc.position, npc.width, npc.height, DustID.WitherLightning);
+                    for (int r = 0; r < 2; r++) Dust.NewDust(npc.position, npc.width, npc.height, DustID.WitherLightning);
                     if (AI_Timer == 90)
                     {
-                        Projectile.NewProjectile(npc.Center, new Vector2(-6, 0), ModContent.ProjectileType<NeoShadowflare>(), 8, 2f);
+                        Projectile.NewProjectile(npc.Center, new Vector2(-16, 0), ModContent.ProjectileType<NeoShadowflare>(), 8, 2f);
                         Main.PlaySound(SoundID.DD2_EtherianPortalDryadTouch);
                         AI_Timer = 0;
                         RageTimes++;
@@ -275,12 +280,10 @@ namespace SpectraMod.NPCs.Boss.MageMaster
                     if (AI_Timer == 1)
                     {
                         for (int rd = 0; rd < 15; rd++) Dust.NewDust(npc.position, npc.width, npc.height, DustID.Shadowflame);
-                        //npc.position = Main.player[npc.target].position - new Vector2(-200, 200);
                     }    
                     npc.noTileCollide = false;
                     npc.alpha = 10;
                     npc.velocity = new Vector2(0, 4f);
-                    Main.NewText(AI_Timer.ToString());
                     if (AI_Timer >= 360)
                     {
                         RageTimes++;
@@ -295,8 +298,9 @@ namespace SpectraMod.NPCs.Boss.MageMaster
                     AttackDelay = 0;
                     IsAttacking = false;
                     npc.alpha = 85;
+                    npc.noGravity = true;
 
-                    AI_State = State_FindTarget;
+                    AI_State = State_Teleport;
                 }
             }
         }

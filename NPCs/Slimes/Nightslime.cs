@@ -10,7 +10,7 @@ namespace SpectraMod.NPCs.Slimes
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Dark Slime");
+            DisplayName.SetDefault("Night Slime");
             Main.npcFrameCount[npc.type] = 2;
         }
 
@@ -21,7 +21,7 @@ namespace SpectraMod.NPCs.Slimes
             npc.aiStyle = 1;
             animationType = NPCID.BlueSlime;
             banner = npc.type;
-            bannerItem = ModContent.ItemType<DarkslimeBanner>();
+            //bannerItem = ModContent.ItemType<NightslimeBanner>();
             if (!Main.hardMode) npc.lifeMax = 124;
             else npc.lifeMax = NPC.downedPlantBoss ? 506 : 248;
         }

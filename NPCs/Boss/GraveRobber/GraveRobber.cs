@@ -7,6 +7,7 @@ using Terraria.Utilities;
 
 namespace SpectraMod.NPCs.Boss.GraveRobber
 {
+    [AutoloadBossHead]
     public class GraveRobber : ModNPC
     {
         public override void SetStaticDefaults()
@@ -29,7 +30,7 @@ namespace SpectraMod.NPCs.Boss.GraveRobber
             music = MusicID.Boss1;
             musicPriority = MusicPriority.BossLow;
             bossBag = ModContent.ItemType<GraverobberBag>();
-            animationType = NPCID.Zombie;
+            animationType = NPCID.ArmoredSkeleton;
             npc.buffImmune[BuffID.Confused] = true;
         }
 
