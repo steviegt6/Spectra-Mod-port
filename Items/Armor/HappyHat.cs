@@ -1,8 +1,7 @@
 ﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Steamworks;
-using Terraria.ID;
 
 namespace SpectraMod.Items.Armor
 {
@@ -33,6 +32,12 @@ namespace SpectraMod.Items.Armor
         {
             player.AddBuff(BuffID.Sunflower, 60);
             player.moveSpeed += 0.20f;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Materials.Bars.DelightedBar>(), 8);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace SpectraMod.Items.Boss.GraveRobber
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bar of Hatred");
-            Tooltip.SetDefault("'The bar of hate'");
+            Tooltip.SetDefault("The bar of hate");
         }
 
         public override void SetDefaults()

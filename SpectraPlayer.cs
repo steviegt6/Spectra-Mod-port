@@ -16,6 +16,7 @@ namespace SpectraMod
 
         #region MISC_EFFECTS_BOOLS
         public bool AllPassive;
+        public bool Hated;
         #endregion
 
         public SpectraEnums.HealthLevel PlayerLifeTier = SpectraEnums.HealthLevel.None;
@@ -23,10 +24,8 @@ namespace SpectraMod
 
         public override void Initialize()
         {
-            #region POWERUP_INIT
             PlayerLifeTier = SpectraEnums.HealthLevel.None;
             PlayerManaTier = SpectraEnums.ManaLevel.None;
-            #endregion
         }
 
         public override void ResetEffects()
@@ -34,6 +33,7 @@ namespace SpectraMod
             #region ACC_RESETEFFECTS
             UnluckyTombEffect = false;
             GreaterPygmyNecklaceEffect = false;
+            Hated = false;
             #endregion
 
             AllPassive = false;
@@ -157,11 +157,28 @@ namespace SpectraMod
             #endregion
         }
 
+        public override void PostUpdateBuffs()
+        {
+            if (Hated)
+            {
+                player.moveSpeed -= 0.3f;
+                player.maxRunSpeed -= 1.1f;
+            }
+        }
+
+        public override void UpdateBadLifeRegen()
+        {
+            if (Hated)
+            {
+                player.lifeRegen = 0;
+                player.lifeRegenTime = 0;
+                player.lifeRegen -= 4;
+            }
+        }
+
         public override TagCompound Save()
         {
-            #region POWERUP_RESOURCETEXTURERESET
             //if (PlayerLifeTier > SpectraEnums.HealthLevel.LifeCrystal) Main.heart2Texture = ModContent.GetTexture("SpectraMod/ResourceTextures/Heart2");
-            #endregion
 
             return new TagCompound() {
                 { "LifeTier", (int)PlayerLifeTier },

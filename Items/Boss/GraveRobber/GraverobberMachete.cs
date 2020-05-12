@@ -2,6 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using SpectraMod.Buffs.Debuffs;
 
 namespace SpectraMod.Items.Boss.GraveRobber
 {
@@ -26,15 +27,6 @@ namespace SpectraMod.Items.Boss.GraveRobber
             item.useAnimation = 12;
             item.autoReuse = true;
             item.UseSound = SoundID.Item1;
-        }
-
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<HatredBar>(), 13);
-            recipe.AddIngredient(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
         }
     }
 }
