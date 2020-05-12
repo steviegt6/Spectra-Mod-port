@@ -21,5 +21,10 @@ namespace SpectraMod.Buffs.Debuffs
         {
             player.GetModPlayer<SpectraPlayer>().Hated = true;
         }
+
+        public override void Update(NPC npc, ref int buffIndex)
+        {
+            npc.GetGlobalNPC<DebuffNPC>().Hated = true;
+        }
     }
 }
