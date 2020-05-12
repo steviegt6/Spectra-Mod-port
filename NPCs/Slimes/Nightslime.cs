@@ -2,7 +2,6 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using SpectraMod.Items.Materials;
 using SpectraMod.Items.Banner;
 
 namespace SpectraMod.NPCs.Slimes
@@ -36,7 +35,7 @@ namespace SpectraMod.NPCs.Slimes
         public override void NPCLoot()
         {
             int amount = Main.expertMode ? 2 : 1;
-            Item.NewItem(npc.getRect(), ModContent.ItemType<BlackGel>(), amount);
+            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Gel.BlackGel>(), amount);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

@@ -43,7 +43,7 @@ namespace SpectraMod.Items.Boss.GraveRobber
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddRecipeGroup("Wood");
-            recipe.AddIngredient(ModContent.ItemType<Materials.BlackGel>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<Materials.Gel.BlackGel>(), 5);
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(this);
             recipe.AddRecipe();

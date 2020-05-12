@@ -42,7 +42,7 @@ namespace SpectraMod.Items.Consumables.Powerups
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.LifeCrystal);
             recipe.AddIngredient(ItemID.LifeFruit);
-            recipe.AddIngredient(ModContent.ItemType<BlackGel>(), 100);
+            recipe.AddIngredient(ModContent.ItemType<Materials.Gel.BlackGel>(), 100);
             recipe.AddIngredient(ItemID.Moonglow);
             recipe.AddIngredient(ItemID.ChlorophyteBar, 25);
             recipe.AddIngredient(ItemID.SpectreBar, 25);
