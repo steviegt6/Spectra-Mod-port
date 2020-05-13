@@ -13,7 +13,7 @@ namespace SpectraMod.NPCs.Boss.GraveRobber
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Grave Robber");
-            Main.npcFrameCount[npc.type] = 3;
+            Main.npcFrameCount[npc.type] = 15;
         }
 
         public override void SetDefaults()
