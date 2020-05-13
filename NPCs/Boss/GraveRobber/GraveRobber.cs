@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using SpectraMod.Items.Boss.GraveRobber;
-using Terraria.Utilities;
+using SpectraMod.Items.Trophies;
 
 namespace SpectraMod.NPCs.Boss.GraveRobber
 {
@@ -62,6 +62,8 @@ namespace SpectraMod.NPCs.Boss.GraveRobber
                 Item.NewItem(npc.getRect(), ModContent.ItemType<HatredBar>(), Main.rand.Next(16) + 2);
                 npc.DropBossBags();
             }
+
+            if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<GraverobberTrophy>());
         }
     }
 }
