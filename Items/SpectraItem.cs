@@ -26,7 +26,7 @@ namespace SpectraMod.Items
             Texture2D texture = Main.itemTexture[item.type];
 
             CustomRare = CustomRarity.None;
-            if (SpectraMod.SizeFix) item.Size = new Vector2(texture.Width, texture.Height);
+            if (SpectraMod.SizeFix && !ignoreAutoSize) item.Size = new Vector2(texture.Width, texture.Height);
             SafeSetDefaults();
             
         }
