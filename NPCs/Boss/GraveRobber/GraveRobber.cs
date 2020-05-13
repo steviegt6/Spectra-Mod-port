@@ -54,8 +54,9 @@ namespace SpectraMod.NPCs.Boss.GraveRobber
         {
             if (!Main.expertMode)
             {
+                SpectraHelper.SimpleItemDrop<GraverobberMachete>(npc, 1, 1f);
                 Item.NewItem(npc.getRect(), ModContent.ItemType<HatredBar>(), Main.rand.Next(14) + 1);
-                Item.NewItem(npc.getRect(), ModContent.ItemType<GraverobberMachete>());
+                //Item.NewItem(npc.getRect(), ModContent.ItemType<GraverobberMachete>());
             }
             else
             {

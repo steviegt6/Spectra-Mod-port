@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Newtonsoft.Json.Bson;
 using SpectraMod.Items.Banner;
 using Terraria;
 using Terraria.ID;
@@ -27,6 +28,11 @@ namespace SpectraMod
             NPCID.BaldZombie, NPCID.BigBaldZombie, NPCID.ArmedZombiePincussion
         };
 
+        /// <summary>
+        /// Attempts to drop a slime staff with the given chance
+        /// </summary>
+        /// <param name="npc">The npc dropping it</param>
+        /// <param name="chance">The default chance</param>
         public static void AttemptSlimeStaff(NPC npc, int chance)
         {
             if (Main.expertMode)
@@ -39,7 +45,50 @@ namespace SpectraMod
             }
         }
 
-        // TODO: make this world lol
+        /// <summary>
+        /// Simply drops an item
+        /// </summary>
+        /// <typeparam name="Loot">The ModItem you wish to drop. Can be set to anything if you're using a vanilla item</typeparam>
+        /// <param name="npc">The npc that dropping it</param>
+        /// <param name="chance">The chance</param>
+        /// <param name="expertMode">The multiplier for being in expert mode</param>
+        /// <param name="vanillaItem">The ID of the vanilla item</param>
+        /// <param name="lowerRange">The least of the item that can drop</param>
+        /// <param name="upperRange">The most of the item that can drop</param>
+        /// <returns>The Main.Item[] index of the Item, null if something went horribly wrong</returns>
+        public static int? SimpleItemDrop<Loot>(NPC npc, int chance, float expertMode, int? vanillaItem = null, int? lowerRange = null, int upperRange = 1) where Loot : ModItem
+        {
+            float dropChance = chance * expertMode;
+
+            if (vanillaItem == null)
+            {
+                if (lowerRange != null)
+                {
+                    if (Main.rand.NextBool((int)dropChance)) return Item.NewItem(npc.getRect(), ModContent.ItemType<Loot>());
+                }
+                else
+                {
+                    int ammount = Main.rand.Next((int)lowerRange, upperRange + 1);
+                    if (Main.rand.NextBool((int)dropChance)) return Item.NewItem(npc.getRect(), ModContent.ItemType<Loot>());
+                }
+            }
+            else
+            {
+                if (lowerRange != null)
+                {
+                    if (Main.rand.NextBool((int)dropChance)) return Item.NewItem(npc.getRect(), chance);
+                }
+                else
+                {
+                    int ammount = Main.rand.Next((int)lowerRange, upperRange + 1);
+                    if (Main.rand.NextBool((int)dropChance)) return Item.NewItem(npc.getRect(), ModContent.ItemType<Loot>());
+                }
+            }
+
+            return null;
+        }
+
+        // TODO: make this work lol
         public static void ProjSpread(Vector2 position, Vector2 velocity, float speed, int amount, float degrees, int type, int damage, float knockback, int owner, int ai0, int ai1)
         {
             Main.NewText("E");
