@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace SpectraMod.Items.Tools.Sets.Dirt
 {
-    public class DirtPickaxe : ModItem
+    public class DirtPickaxe : SpectraItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,9 +13,8 @@ namespace SpectraMod.Items.Tools.Sets.Dirt
             Tooltip.SetDefault("That's not a pickaxe!");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            item.Size = new Vector2(32, 32);
             item.value = Item.sellPrice(0, 0, 0, 1);
             item.rare = ItemRarityID.White;
             item.useStyle = ItemUseStyleID.SwingThrow;

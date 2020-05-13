@@ -30,11 +30,9 @@ namespace SpectraMod
 
         public override void ResetEffects()
         {
-            #region ACC_RESETEFFECTS
             UnluckyTombEffect = false;
             GreaterPygmyNecklaceEffect = false;
             Hated = false;
-            #endregion
 
             AllPassive = false;
         }

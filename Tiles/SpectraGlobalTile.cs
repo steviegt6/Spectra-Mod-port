@@ -2,15 +2,15 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace SpectraMod.Tiles
 {
-    public class SpectraTile : GlobalTile
+    public class SpectraGlobalTile : GlobalTile
     {
         public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged)
         {
-            if (SpectraItem.dirtPick)
+            if (SpectraGlobalItem.DirtPick)
+            {
                 switch (type)
                 {
                     case TileID.Dirt:
@@ -24,8 +24,8 @@ namespace SpectraMod.Tiles
                     default:
                         return false;
                 }
-            else
-                return base.CanKillTile(i, j, type, ref blockDamaged);
+            }
+            else return base.CanKillTile(i, j, type, ref blockDamaged);
         }
     }
 }

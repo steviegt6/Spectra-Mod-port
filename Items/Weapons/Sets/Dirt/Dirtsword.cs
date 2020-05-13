@@ -14,7 +14,7 @@ namespace SpectraMod.Items.Weapons.Sets.Dirt
 
         public override void SafeSetDefaults()
         {
-            item.value = Item.sellPrice(0, 0, 6, 66);
+            item.value = Item.sellPrice(0, 0, 0, 1);
             item.rare = ItemRarityID.White;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.damage = 1;
