@@ -8,6 +8,25 @@ namespace SpectraMod
 {
     public class SpectraHelper
     {
+        public static int[] Pool_ZombiesNormal = { 
+            NPCID.Zombie, NPCID.SmallZombie, NPCID.BigZombie, NPCID.FemaleZombie, 
+            NPCID.BigFemaleZombie, NPCID.SmallFemaleZombie, NPCID.TwiggyZombie, 
+            NPCID.BigTwiggyZombie, NPCID.SmallTwiggyZombie, NPCID.SwampZombie,
+            NPCID.BigSwampZombie, NPCID.SmallSwampZombie, NPCID.SlimedZombie,
+            NPCID.BigSlimedZombie, NPCID.SmallSlimedZombie, NPCID.PincushionZombie,
+            NPCID.BigPincushionZombie, NPCID.SmallPincushionZombie, NPCID.BaldZombie,
+            NPCID.BigBaldZombie, NPCID.SmallBaldZombie
+        };
+        public static int[] Pool_ZombiesExpert = {
+            NPCID.Zombie, NPCID.ArmedZombie, NPCID.BigZombie, 
+            NPCID.FemaleZombie, NPCID.BigFemaleZombie, NPCID.ArmedZombieCenx, 
+            NPCID.TwiggyZombie, NPCID.BigTwiggyZombie, NPCID.ArmedZombieTwiggy, 
+            NPCID.SwampZombie, NPCID.BigSwampZombie, NPCID.ArmedZombieSwamp,
+            NPCID.SlimedZombie, NPCID.BigSlimedZombie, NPCID.ArmedZombieSlimed, 
+            NPCID.PincushionZombie, NPCID.BigPincushionZombie, NPCID.ArmedZombiePincussion,
+            NPCID.BaldZombie, NPCID.BigBaldZombie, NPCID.ArmedZombiePincussion
+        };
+
         public static void AttemptSlimeStaff(NPC npc, int chance)
         {
             if (Main.expertMode)

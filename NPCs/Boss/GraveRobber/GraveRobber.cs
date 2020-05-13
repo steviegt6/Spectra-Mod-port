@@ -36,13 +36,18 @@ namespace SpectraMod.NPCs.Boss.GraveRobber
 
         public override void OnHitByItem(Player player, Item item, int damage, float knockback, bool crit)
         {
-            if (Main.rand.NextBool(4)) NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.Zombie);
+            int zombiesChosenNormal = Main.rand.Next(0, SpectraHelper.Pool_ZombiesNormal.Length);
+            int zombiesChosenExpert = Main.rand.Next(0, SpectraHelper.Pool_ZombiesExpert.Length);
+            if (Main.rand.NextBool(4) && !Main.expertMode) NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, SpectraHelper.Pool_ZombiesNormal[zombiesChosenNormal]);
+            if (Main.rand.NextBool(3) && Main.expertMode) NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, SpectraHelper.Pool_ZombiesExpert[zombiesChosenExpert]);
         }
 
         public override void OnHitByProjectile(Projectile projectile, int damage, float knockback, bool crit)
         {
-            if ((Main.rand.NextBool(4)) && (npc.life > npc.lifeMax / 5)) NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.Zombie);
-            if ((Main.expertMode) && (Main.rand.NextBool(2)) && (npc.life < npc.lifeMax / 5)) NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.Drippler);
+            int zombiesChosenNormal = Main.rand.Next(0, SpectraHelper.Pool_ZombiesNormal.Length);
+            int zombiesChosenExpert = Main.rand.Next(0, SpectraHelper.Pool_ZombiesExpert.Length);
+            if (Main.rand.NextBool(6) && !Main.expertMode) NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, SpectraHelper.Pool_ZombiesNormal[zombiesChosenNormal]);
+            if (Main.rand.NextBool(5) && Main.expertMode) NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, SpectraHelper.Pool_ZombiesExpert[zombiesChosenExpert]);
         }
 
         public override void NPCLoot()
@@ -50,12 +55,6 @@ namespace SpectraMod.NPCs.Boss.GraveRobber
             if (!Main.expertMode)
             {
                 Item.NewItem(npc.getRect(), ModContent.ItemType<HatredBar>(), Main.rand.Next(14) + 1);
-                //var dropChoice = new WeightedRandom<int>();
-                //dropChoice.Add(ModContent.ItemType<GraverobberMachete>());
-                //dropChoice.Add(ModContent.ItemType<GraverobberRanged>());
-                //dropChoice.Add(ModContent.ItemType<GraverobberMagic>());
-                //dropChoice.Add(ModContent.ItemType<GraverobberThrown>());
-                //int choice = dropChoice;
                 Item.NewItem(npc.getRect(), ModContent.ItemType<GraverobberMachete>());
             }
             else
