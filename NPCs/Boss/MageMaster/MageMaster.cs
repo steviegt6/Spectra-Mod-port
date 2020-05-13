@@ -30,6 +30,14 @@ namespace SpectraMod.NPCs.Boss.MageMaster
             npc.alpha = 85;
             npc.HitSound = SoundID.NPCHit28;
             RageTimes = 77;
+
+            npc.buffImmune[BuffID.Confused] = true;
+            npc.buffImmune[BuffID.Slow] = true;
+            npc.buffImmune[BuffID.Bleeding] = true;
+            npc.buffImmune[BuffID.CursedInferno] = true;
+            npc.buffImmune[BuffID.Ichor] = true;
+            npc.buffImmune[BuffID.ShadowFlame] = true;
+            npc.buffImmune[BuffID.OnFire] = true;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
