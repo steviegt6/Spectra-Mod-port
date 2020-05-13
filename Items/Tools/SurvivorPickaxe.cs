@@ -1,11 +1,10 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace SpectraMod.Items.Tools
 {
-    public class SurvivorPickaxe : ModItem
+    public class SurvivorPickaxe : SpectraItem
     {
         public override void SetStaticDefaults()
         {
@@ -14,9 +13,8 @@ namespace SpectraMod.Items.Tools
                                "\nMakes you immune to lava while heald");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            item.Size = new Vector2(32, 32);
             item.value = Item.sellPrice(0, 2, 89, 99);
             item.rare = ItemRarityID.Blue;
             item.useStyle = ItemUseStyleID.SwingThrow;

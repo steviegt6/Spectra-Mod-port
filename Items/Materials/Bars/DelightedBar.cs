@@ -1,11 +1,10 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 
 namespace SpectraMod.Items.Materials.Bars
 {
-    public class DelightedBar : ModItem
+    public class DelightedBar : SpectraItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,9 +12,8 @@ namespace SpectraMod.Items.Materials.Bars
             Tooltip.SetDefault("'Condensed happiness'");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            item.Size = new Vector2(30, 24);
             item.value = Item.sellPrice(0, 0, 0, 50);
             item.rare = ItemRarityID.White;
             item.maxStack = 999;

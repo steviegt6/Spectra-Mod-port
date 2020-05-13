@@ -1,11 +1,9 @@
 ﻿using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 
 namespace SpectraMod.Items.Materials.Gel
 {
-    public class BlackGel : ModItem
+    public class BlackGel : SpectraItem
     {
         public override void SetStaticDefaults()
         {
@@ -14,9 +12,8 @@ namespace SpectraMod.Items.Materials.Gel
                                "\nNeither tasty nor flammable");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            item.Size = new Vector2(16, 14);
             item.maxStack = 9999;
             item.value = Item.sellPrice(0, 0, 1, 0);
             item.rare = ItemRarityID.Blue;

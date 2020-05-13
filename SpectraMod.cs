@@ -7,6 +7,25 @@ namespace SpectraMod
 {
 	public class SpectraMod : Mod
 	{
+		internal static SpectraMod Instance;
+		internal static bool SizeFix;
+
+		public override void Load()
+		{
+			Instance = this;
+		}
+
+		public override void LoadResources()
+		{
+			base.LoadResources();
+			SizeFix = false;
+		}
+
+		public override void PostAddRecipes()
+		{
+			SizeFix = true;
+		}
+
 		public SpectraMod()
 		{
 		}

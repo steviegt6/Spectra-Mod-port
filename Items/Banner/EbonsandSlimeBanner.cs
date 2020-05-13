@@ -5,11 +5,10 @@ using Microsoft.Xna.Framework;
 
 namespace SpectraMod.Items.Banner
 {
-    public class EbonsandSlimeBanner : ModItem
+    public class EbonsandSlimeBanner : SpectraItem
     {
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-			item.Size = new Vector2(10, 24);
 			item.maxStack = 99;
 			item.useTurn = true;
 			item.autoReuse = true;

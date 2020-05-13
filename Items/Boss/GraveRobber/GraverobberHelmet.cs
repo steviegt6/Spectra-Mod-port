@@ -1,12 +1,11 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 
 namespace SpectraMod.Items.Boss.GraveRobber
 {
     [AutoloadEquip(EquipType.Head)]
-    public class GraverobberHelmet : ModItem
+    public class GraverobberHelmet : SpectraItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,9 +14,8 @@ namespace SpectraMod.Items.Boss.GraveRobber
                                "\nYou are hated");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            item.Size = new Vector2(26, 24);
             item.value = Item.sellPrice(0, 4, 0, 0);
             item.defense = 5;
             item.rare = ItemRarityID.Blue;

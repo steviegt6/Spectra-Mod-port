@@ -6,7 +6,7 @@ using SpectraMod.Buffs.Debuffs;
 
 namespace SpectraMod.Items.Boss.GraveRobber
 {
-    public class GraverobberMachete : ModItem
+    public class GraverobberMachete : SpectraItem
     {
         public override void SetStaticDefaults()
         {
@@ -14,9 +14,8 @@ namespace SpectraMod.Items.Boss.GraveRobber
             Tooltip.SetDefault("The robber's weapon");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            item.Size = new Vector2(30, 30);
             item.value = Item.sellPrice(0, 0, 6, 66);
             item.rare = ItemRarityID.Blue;
             item.useStyle = ItemUseStyleID.SwingThrow;

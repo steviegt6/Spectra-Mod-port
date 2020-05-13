@@ -1,12 +1,10 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using SpectraMod.Items.Materials;
 
 namespace SpectraMod.Items.Consumables.Powerups
 {
-    public class CursedHeart : ModItem
+    public class CursedHeart : SpectraItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,9 +13,8 @@ namespace SpectraMod.Items.Consumables.Powerups
                                "\nPermanently increases max life by 100");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            item.Size = new Vector2(22, 22);
             item.value = Item.sellPrice(0, 3, 0, 0);
             item.rare = ItemRarityID.LightPurple;
             item.UseSound = SoundID.Item29;

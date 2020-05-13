@@ -1,11 +1,10 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 
 namespace SpectraMod.Items.Weapons.Sets.Dirt
 {
-    public class Dirtsword : ModItem
+    public class Dirtsword : SpectraItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,9 +12,8 @@ namespace SpectraMod.Items.Weapons.Sets.Dirt
             Tooltip.SetDefault("Is that it?");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            item.Size = new Vector2(32, 32);
             item.value = Item.sellPrice(0, 0, 6, 66);
             item.rare = ItemRarityID.White;
             item.useStyle = ItemUseStyleID.SwingThrow;

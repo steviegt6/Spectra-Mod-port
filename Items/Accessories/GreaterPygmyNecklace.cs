@@ -1,11 +1,10 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 
 namespace SpectraMod.Items.Accessories
 {
-    public class GreaterPygmyNecklace : ModItem
+    public class GreaterPygmyNecklace : SpectraItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,10 +14,9 @@ namespace SpectraMod.Items.Accessories
                                "\nIncreases minion knockback");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            item.Size = new Vector2(40, 40);
-            item.value = Item.sellPrice(0, 6, 6, 6);
+            item.value = Item.sellPrice(0, 28, 18, 0);
             item.accessory = true;
             item.rare = ItemRarityID.Lime;
         }

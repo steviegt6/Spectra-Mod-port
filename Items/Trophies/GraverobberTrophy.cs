@@ -1,16 +1,12 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-
 
 namespace SpectraMod.Items.Trophies
 {
-    public class GraverobberTrophy : ModItem
+    public class GraverobberTrophy : SpectraItem
     {
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-
-            item.Size = new Vector2(30, 30);
             item.maxStack = 99;
             item.useTurn = true;
             item.autoReuse = true;

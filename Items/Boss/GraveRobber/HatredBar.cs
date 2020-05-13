@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace SpectraMod.Items.Boss.GraveRobber
 {
-    public class HatredBar : ModItem
+    public class HatredBar : SpectraItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,9 +13,8 @@ namespace SpectraMod.Items.Boss.GraveRobber
             Tooltip.SetDefault("The bar of hate");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            item.Size = new Vector2(30, 24);
             item.value = Item.sellPrice(0, 0, 1, 0);
             item.rare = ItemRarityID.Blue;
             item.maxStack = 999;

@@ -15,6 +15,7 @@ Credits:
  - Spectra Mod for tModLoader porters:
    * [c/2bffa0:pbone]: Coder, spriter, & founder of the Spectra Mod tModLoader port
    * [c/ffb600:MartinPlayz]: Spriter for the port & member of the original wiki
+   * [c/42ff6b:Stevie]: Coder
  - The Terraria team & Relogic for making this game
  - The tModLoader team and all of its contributors for making this mod loader
 

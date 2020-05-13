@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace SpectraMod.Items.Weapons.Sets.Hatred
 {
-    public class HatredBow : ModItem
+    public class HatredBow : SpectraItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,9 +13,8 @@ namespace SpectraMod.Items.Weapons.Sets.Hatred
             Tooltip.SetDefault("Strike with the bow of vengence!");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            item.Size = new Vector2(20, 40);
             item.value = Item.sellPrice(0, 5, 60, 0);
             item.rare = ItemRarityID.Orange;
             item.useStyle = ItemUseStyleID.HoldingOut;

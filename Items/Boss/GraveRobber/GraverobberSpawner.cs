@@ -5,7 +5,7 @@ using Terraria.ID;
 
 namespace SpectraMod.Items.Boss.GraveRobber
 {
-    public class GraverobberSpawner : ModItem
+    public class GraverobberSpawner : SpectraItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,9 +15,8 @@ namespace SpectraMod.Items.Boss.GraveRobber
             ItemID.Sets.SortingPriorityBossSpawns[item.type] = 0;
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            item.Size = new Vector2(32, 36);
             item.maxStack = 20;
             item.useStyle = ItemUseStyleID.HoldingUp;
             item.useTime = 30;

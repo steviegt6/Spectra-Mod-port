@@ -1,11 +1,10 @@
 ﻿using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
+
 
 namespace SpectraMod.Items.Materials.VBoss
 {
-    public class DestroyerMandible : ModItem
+    public class DestroyerMandible : SpectraItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,9 +12,8 @@ namespace SpectraMod.Items.Materials.VBoss
             Tooltip.SetDefault("Mechanical Pieces of the Metallic Devourer");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            item.Size = new Vector2(16, 40);
             item.maxStack = 999;
             item.value = Item.sellPrice(0, 8, 0, 0);
             item.rare = ItemRarityID.Pink;

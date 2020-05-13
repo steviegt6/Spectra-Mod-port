@@ -1,15 +1,13 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 
 namespace SpectraMod.Items.Banner
 {
-    public class CrimsandSlimeBanner : ModItem
+    public class CrimsandSlimeBanner : SpectraItem
     {
-		public override void SetDefaults()
+		public override void SafeSetDefaults()
 		{
-			item.Size = new Vector2(10, 24);
 			item.maxStack = 99;
 			item.useTurn = true;
 			item.autoReuse = true;

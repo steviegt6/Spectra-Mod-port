@@ -1,11 +1,10 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 
 namespace SpectraMod.Items.Materials.Bars
 {
-    public class SurviveBar : ModItem
+    public class SurviveBar : SpectraItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,9 +12,8 @@ namespace SpectraMod.Items.Materials.Bars
             Tooltip.SetDefault("'The lost bar of the lost surivor'");
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            item.Size = new Vector2(30, 24);
             item.value = Item.sellPrice(0, 1, 50, 0);
             item.rare = ItemRarityID.Orange;
             item.maxStack = 999;
