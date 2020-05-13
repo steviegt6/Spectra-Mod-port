@@ -24,6 +24,9 @@ namespace SpectraMod.NPCs.Slimes
 
             if (!Main.hardMode) npc.lifeMax = 85;
             else npc.lifeMax = 170;
+
+            npc.HitSound = SoundID.NPCHit1;
+            npc.DeathSound = SoundID.NPCDeath1;
         }
 
         public override void NPCLoot()

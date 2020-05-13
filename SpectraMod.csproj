@@ -8,7 +8,6 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Items\Boss\MageMaster\" />
     <Folder Include="Projectiles\Weapons\" />
   </ItemGroup>
   <Target Name="BuildMod" AfterTargets="Build">

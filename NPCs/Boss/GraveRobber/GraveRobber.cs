@@ -30,6 +30,9 @@ namespace SpectraMod.NPCs.Boss.GraveRobber
             bossBag = ModContent.ItemType<GraverobberBag>();
             animationType = NPCID.ArmoredSkeleton;
             npc.buffImmune[BuffID.Confused] = true;
+
+            npc.HitSound = SoundID.NPCHit1;
+            npc.DeathSound = SoundID.NPCDeath1;
         }
 
         public override void OnHitByItem(Player player, Item item, int damage, float knockback, bool crit)
