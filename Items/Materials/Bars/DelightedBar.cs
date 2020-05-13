@@ -9,7 +9,7 @@ namespace SpectraMod.Items.Materials.Bars
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Bar of Hatred");
+            DisplayName.SetDefault("Bar of Delight");
             Tooltip.SetDefault("'Condensed happiness'");
         }
 
