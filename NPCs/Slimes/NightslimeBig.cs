@@ -5,11 +5,11 @@ using SpectraMod.Items.Banner;
 
 namespace SpectraMod.NPCs.Slimes
 {
-    public class Nightslime : SpectraNPC
+    public class NightslimeBig : SpectraNPC
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Night Slime");
+            DisplayName.SetDefault("Large Night Slime");
             Main.npcFrameCount[npc.type] = 2;
         }
 
@@ -20,21 +20,22 @@ namespace SpectraMod.NPCs.Slimes
             banner = npc.type;
             bannerItem = ModContent.ItemType<NightslimeBanner>();
 
-            npc.damage = Main.hardMode ? 16 : 48;
+            npc.damage = Main.hardMode ? 64 : 48;
 
-            if (!Main.hardMode) npc.lifeMax = 62;
-            else npc.lifeMax = NPC.downedPlantBoss ? 248 : 124;
+            if (!Main.hardMode) npc.lifeMax = 124;
+            else npc.lifeMax = NPC.downedPlantBoss ? 506 : 248;
         }
+
 
         public override void NPCLoot()
         {
-            int amount = Main.expertMode ? 2 : 1;
+            int amount = Main.expertMode ? 4 : 2;
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Gel.BlackGel>(), amount);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return (SpawnCondition.OverworldNightMonster.Chance > 0f) ? SpawnCondition.OverworldNightMonster.Chance / 2.75f : 0f;
+            return (SpawnCondition.OverworldNightMonster.Chance > 0f) ? SpawnCondition.OverworldNightMonster.Chance / 2.5f : 0f;
         }
     }
 }

@@ -1,22 +1,22 @@
-﻿using Microsoft.Xna.Framework;
-using SpectraMod.Projectiles.Boss.MageMaster;
+﻿using Terraria;
 using System.IO;
-using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Microsoft.Xna.Framework;
+using SpectraMod.Projectiles.Boss.MageMaster;
 
 namespace SpectraMod.NPCs.Boss.MageMaster
 {
     [AutoloadBossHead]
-    public class MageMaster : ModNPC
+    public class MageMaster : SpectraNPC
     {
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[npc.type] = 3;
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             npc.boss = true;
             npc.aiStyle = -1;

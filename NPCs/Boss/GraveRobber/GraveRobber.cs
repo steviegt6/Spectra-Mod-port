@@ -1,14 +1,13 @@
-﻿using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
-using SpectraMod.Items.Boss.GraveRobber;
+using Terraria.ModLoader;
 using SpectraMod.Items.Trophies;
+using SpectraMod.Items.Boss.GraveRobber;
 
 namespace SpectraMod.NPCs.Boss.GraveRobber
 {
     [AutoloadBossHead]
-    public class GraveRobber : ModNPC
+    public class GraveRobber : SpectraNPC
     {
         public override void SetStaticDefaults()
         {
@@ -16,9 +15,8 @@ namespace SpectraMod.NPCs.Boss.GraveRobber
             Main.npcFrameCount[npc.type] = 15;
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            npc.Size = new Vector2(34, 23);
             npc.boss = true;
             npc.aiStyle = 3;
             npc.value = Item.sellPrice(0, 1, 75, 50);
@@ -56,7 +54,6 @@ namespace SpectraMod.NPCs.Boss.GraveRobber
             {
                 SpectraHelper.SimpleItemDrop<GraverobberMachete>(npc, 1, 1f);
                 Item.NewItem(npc.getRect(), ModContent.ItemType<HatredBar>(), Main.rand.Next(14) + 1);
-                //Item.NewItem(npc.getRect(), ModContent.ItemType<GraverobberMachete>());
             }
             else
             {
