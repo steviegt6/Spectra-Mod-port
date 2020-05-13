@@ -31,7 +31,7 @@ namespace SpectraMod.Items.Accessories
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.PygmyNecklace);
             recipe.AddIngredient(ItemID.PapyrusScarab);
-            recipe.AddIngredient(ModContent.ItemType<Materials.Bars.SurviveBar>(), 12);
+            recipe.AddIngredient(ModContent.ItemType<Materials.Bars.SurviveBar>(), 15);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
