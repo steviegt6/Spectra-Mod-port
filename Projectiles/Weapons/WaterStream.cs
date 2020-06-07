@@ -38,6 +38,7 @@ namespace SpectraMod.Projectiles.Weapons
             projectile.friendly = true;
             projectile.hostile = false;
             projectile.penetrate = 3;
+            projectile.knockBack = 1f;
         }
 
         public override void AI()

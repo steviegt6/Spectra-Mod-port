@@ -29,11 +29,13 @@ namespace SpectraMod.Items.Weapons.Sets.Water
             item.shoot = ProjectileType<Projectiles.Weapons.WaterStream>();
             item.shootSpeed = 8f;
             item.scale = 0.8f;
+            item.knockBack = 3f;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             damage = 7;
+            knockBack = 1f;
             return base.Shoot(player, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
         }
     }
