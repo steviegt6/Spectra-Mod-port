@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria.World.Generation;
 using Terraria.GameContent.Generation;
+using static Terraria.ModLoader.ModContent;
 
 namespace SpectraMod
 {
@@ -25,6 +26,25 @@ namespace SpectraMod
         public override void PostWorldGen()
         {
             GenAncientHouse();
+
+            int[] itemsToPlaceInWaterChests = { ItemType<Items.Weapons.Sets.Water.WaterSword>(), ItemID.BreathingReed };
+            int itemsToPlaceInWaterChestsChoice = 0;
+            for (int chestIndex = 0; chestIndex < 1000; chestIndex++)
+            {
+                Chest chest = Main.chest[chestIndex];
+                if (chest != null && Main.tile[chest.x, chest.y].type == TileID.Containers && Main.tile[chest.x, chest.y].frameX == 17 * 36)
+                {
+                    for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+                    {
+                        if (chest.item[inventoryIndex].type == ItemID.BreathingReed)
+                        {
+                            chest.item[inventoryIndex].SetDefaults(itemsToPlaceInWaterChests[itemsToPlaceInWaterChestsChoice]);
+                            itemsToPlaceInWaterChestsChoice = (itemsToPlaceInWaterChestsChoice + 1) % itemsToPlaceInWaterChests.Length;
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         private void GenAncientHouse()
@@ -121,7 +141,7 @@ namespace SpectraMod
                         Tile tile = Framing.GetTileSafely(k, l);
                         switch (AncientHouseBlocks[x, y])
                         {
-                            case _:
+                            case @_:
                                 tile.active(false);
                                 break;
                             case W:
