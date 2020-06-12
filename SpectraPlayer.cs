@@ -9,6 +9,7 @@ namespace SpectraMod
 {
     public class SpectraPlayer : ModPlayer
     {
+
         #region ACC_BOOLS
         public bool UnluckyTombEffect;
         public bool GreaterPygmyNecklaceEffect;

@@ -10,6 +10,8 @@ namespace SpectraMod
 		internal static SpectraMod Instance;
 		internal static bool SizeFix;
 
+		public static SpectraHelper[] spectraHelper = new SpectraHelper[20];
+
 		public override void Load()
 		{
 			Instance = this;
