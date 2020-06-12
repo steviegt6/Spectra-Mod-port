@@ -1,14 +1,13 @@
-﻿using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
+using SpectraMod.Items.Trophies;
 using SpectraMod.Items.Boss.GraveRobber;
-using Terraria.Utilities;
 
 namespace SpectraMod.NPCs.Boss.GraveRobber
 {
     [AutoloadBossHead]
-    public class GraveRobber : ModNPC
+    public class GraveRobber : SpectraNPC
     {
         public override void SetStaticDefaults()
         {
@@ -16,9 +15,8 @@ namespace SpectraMod.NPCs.Boss.GraveRobber
             Main.npcFrameCount[npc.type] = 15;
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            npc.Size = new Vector2(34, 23);
             npc.boss = true;
             npc.aiStyle = 3;
             npc.value = Item.sellPrice(0, 1, 75, 50);
@@ -32,6 +30,9 @@ namespace SpectraMod.NPCs.Boss.GraveRobber
             bossBag = ModContent.ItemType<GraverobberBag>();
             animationType = NPCID.ArmoredSkeleton;
             npc.buffImmune[BuffID.Confused] = true;
+
+            npc.HitSound = SoundID.NPCHit1;
+            npc.DeathSound = SoundID.NPCDeath1;
         }
 
         public override void OnHitByItem(Player player, Item item, int damage, float knockback, bool crit)
@@ -54,14 +55,16 @@ namespace SpectraMod.NPCs.Boss.GraveRobber
         {
             if (!Main.expertMode)
             {
+                SpectraHelper.SimpleItemDrop<GraverobberMachete>(npc, 1, 1f);
                 Item.NewItem(npc.getRect(), ModContent.ItemType<HatredBar>(), Main.rand.Next(14) + 1);
-                Item.NewItem(npc.getRect(), ModContent.ItemType<GraverobberMachete>());
             }
             else
             {
                 Item.NewItem(npc.getRect(), ModContent.ItemType<HatredBar>(), Main.rand.Next(16) + 2);
                 npc.DropBossBags();
             }
+
+            if (Main.rand.NextBool(10)) Item.NewItem(npc.getRect(), ModContent.ItemType<GraverobberTrophy>());
         }
     }
 }

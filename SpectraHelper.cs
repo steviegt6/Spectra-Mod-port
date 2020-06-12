@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using SpectraMod.Items.Banner;
+using System.Runtime.ExceptionServices;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -9,9 +9,9 @@ namespace SpectraMod
 {
     public class SpectraHelper
     {
-        public static int[] Pool_ZombiesNormal = { 
-            NPCID.Zombie, NPCID.SmallZombie, NPCID.BigZombie, NPCID.FemaleZombie, 
-            NPCID.BigFemaleZombie, NPCID.SmallFemaleZombie, NPCID.TwiggyZombie, 
+        public static int[] Pool_ZombiesNormal = {
+            NPCID.Zombie, NPCID.SmallZombie, NPCID.BigZombie, NPCID.FemaleZombie,
+            NPCID.BigFemaleZombie, NPCID.SmallFemaleZombie, NPCID.TwiggyZombie,
             NPCID.BigTwiggyZombie, NPCID.SmallTwiggyZombie, NPCID.SwampZombie,
             NPCID.BigSwampZombie, NPCID.SmallSwampZombie, NPCID.SlimedZombie,
             NPCID.BigSlimedZombie, NPCID.SmallSlimedZombie, NPCID.PincushionZombie,
@@ -19,15 +19,15 @@ namespace SpectraMod
             NPCID.BigBaldZombie, NPCID.SmallBaldZombie
         };
         public static int[] Pool_ZombiesExpert = {
-            NPCID.Zombie, NPCID.ArmedZombie, NPCID.BigZombie, 
-            NPCID.FemaleZombie, NPCID.BigFemaleZombie, NPCID.ArmedZombieCenx, 
-            NPCID.TwiggyZombie, NPCID.BigTwiggyZombie, NPCID.ArmedZombieTwiggy, 
+            NPCID.Zombie, NPCID.ArmedZombie, NPCID.BigZombie,
+            NPCID.FemaleZombie, NPCID.BigFemaleZombie, NPCID.ArmedZombieCenx,
+            NPCID.TwiggyZombie, NPCID.BigTwiggyZombie, NPCID.ArmedZombieTwiggy,
             NPCID.SwampZombie, NPCID.BigSwampZombie, NPCID.ArmedZombieSwamp,
-            NPCID.SlimedZombie, NPCID.BigSlimedZombie, NPCID.ArmedZombieSlimed, 
+            NPCID.SlimedZombie, NPCID.BigSlimedZombie, NPCID.ArmedZombieSlimed,
             NPCID.PincushionZombie, NPCID.BigPincushionZombie, NPCID.ArmedZombiePincussion,
             NPCID.BaldZombie, NPCID.BigBaldZombie, NPCID.ArmedZombiePincussion
         };
-
+      
         public static string SpectraValueToName(int coinValue)
         {
             int num10 = 0;
@@ -92,7 +92,12 @@ namespace SpectraMod
             }
             return text2;
         }
-
+      
+        /// <summary>
+        /// Attempts to drop a slime staff with the given chance
+        /// </summary>
+        /// <param name="npc">The npc dropping it</param>
+        /// <param name="chance">The default chance</param>
         public static void AttemptSlimeStaff(NPC npc, int chance)
         {
             if (Main.expertMode)
@@ -105,7 +110,34 @@ namespace SpectraMod
             }
         }
 
-        // TODO: make this world lol
+        /// <summary>
+        /// Simply drops an item
+        /// </summary>
+        /// <typeparam name="Loot">The ModItem you wish to drop. Can be set to anything if you're using a vanilla item</typeparam>
+        /// <param name="npc">The npc that dropping it</param>
+        /// <param name="chance">The chance</param>
+        /// <param name="expertMode">The multiplier for being in expert mode</param>
+        /// <param name="vanillaItem">The ID of the vanilla item</param>
+        /// <param name="lowerRange">The least of the item that can drop</param>
+        /// <param name="upperRange">The most of the item that can drop</param>
+        /// <returns>The Main.Item[] index of the Item, null if something went horribly wrong</returns>
+        public static int? SimpleItemDrop<Loot>(NPC npc, int chance, float expertMode, int? vanillaItem = null, int? lowerRange = null) where Loot : ModItem
+        {
+            float dropChance = chance * expertMode;
+
+            if (vanillaItem == null)
+            {
+                if (Main.rand.NextBool((int)dropChance)) return Item.NewItem(npc.getRect(), ModContent.ItemType<Loot>());
+            }
+            else
+            {
+                if (Main.rand.NextBool((int)dropChance)) return Item.NewItem(npc.getRect(), chance);
+            }
+
+            return null;
+        }
+
+        // TODO: make this work lol
         public static void ProjSpread(Vector2 position, Vector2 velocity, float speed, int amount, float degrees, int type, int damage, float knockback, int owner, int ai0, int ai1)
         {
             Main.NewText("E");

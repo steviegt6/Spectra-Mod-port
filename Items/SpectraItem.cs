@@ -11,6 +11,11 @@ namespace SpectraMod.Items
     {
         CustomRarity CustomRare;
 
+        /// <summary>
+        /// Use for animated items
+        /// </summary>
+        bool ignoreAutoSize;
+
         public virtual void SafeSetDefaults()
         {
         }
@@ -20,11 +25,10 @@ namespace SpectraMod.Items
             //Texture2D texture = ModContent.GetTexture(item.modItem.Texture);
             Texture2D texture = Main.itemTexture[item.type];
 
-
             CustomRare = CustomRarity.None;
+            if (SpectraMod.SizeFix && !ignoreAutoSize) item.Size = new Vector2(texture.Width, texture.Height);
             SafeSetDefaults();
             
-            if (SpectraMod.SizeFix) item.Size = new Vector2(texture.Width, texture.Height);
         }
 
         public void SafeModifyTooltips(List<TooltipLine> tooltips)

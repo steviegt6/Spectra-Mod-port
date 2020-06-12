@@ -1,22 +1,22 @@
-﻿using Microsoft.Xna.Framework;
-using SpectraMod.Projectiles.Boss.MageMaster;
+﻿using Terraria;
 using System.IO;
-using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Microsoft.Xna.Framework;
+using SpectraMod.Projectiles.Boss.MageMaster;
 
 namespace SpectraMod.NPCs.Boss.MageMaster
 {
     [AutoloadBossHead]
-    public class MageMaster : ModNPC
+    public class MageMaster : SpectraNPC
     {
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[npc.type] = 3;
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
             npc.boss = true;
             npc.aiStyle = -1;
@@ -30,6 +30,14 @@ namespace SpectraMod.NPCs.Boss.MageMaster
             npc.alpha = 85;
             npc.HitSound = SoundID.NPCHit28;
             RageTimes = 77;
+
+            npc.buffImmune[BuffID.Confused] = true;
+            npc.buffImmune[BuffID.Slow] = true;
+            npc.buffImmune[BuffID.Bleeding] = true;
+            npc.buffImmune[BuffID.CursedInferno] = true;
+            npc.buffImmune[BuffID.Ichor] = true;
+            npc.buffImmune[BuffID.ShadowFlame] = true;
+            npc.buffImmune[BuffID.OnFire] = true;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

@@ -19,6 +19,7 @@ namespace SpectraMod.Items.Boss.GraveRobber
             item.consumable = true;
             item.rare = ItemRarityID.Green;
             item.expert = true;
+            item.maxStack = 9999;
         }
 
         public override void OpenBossBag(Player player)

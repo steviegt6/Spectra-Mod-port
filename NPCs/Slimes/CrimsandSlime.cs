@@ -1,34 +1,32 @@
-﻿using Microsoft.Xna.Framework;
-using SpectraMod.Items.Banner;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using SpectraMod.Items.Banner;
 
 namespace SpectraMod.NPCs.Slimes
 {
-    public class CrimsandSlime : ModNPC
+    public class CrimsandSlime : SpectraNPC
     {
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[npc.type] = 3;
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            npc.Size = new Vector2(32, 22);
             npc.damage = 15;
             npc.aiStyle = 1;
             animationType = NPCID.SandSlime;
             banner = npc.type;
             bannerItem = ModContent.ItemType<CrimsandSlimeBanner>();
+
+            npc.damage = Main.hardMode ? 24 : 48;
+
             if (!Main.hardMode) npc.lifeMax = 75;
             else npc.lifeMax = 150;
-        }
 
-        public override void ModifyHitPlayer(Player target, ref int damage, ref bool crit)
-        {
-            if (!Main.hardMode) damage = 14;
-            else damage = 28;
+            npc.HitSound = SoundID.NPCHit1;
+            npc.DeathSound = SoundID.NPCDeath1;
         }
 
         public override void NPCLoot()
