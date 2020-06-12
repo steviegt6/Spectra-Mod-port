@@ -4,10 +4,10 @@ using Terraria.ModLoader;
 
 namespace SpectraMod.Items.Banner
 {
-    public class EbonsandSlimeBanner : SpectraItem
+    public class NightslimeBanner : SpectraItem
     {
-        public override void SafeSetDefaults()
-        {
+		public override void SafeSetDefaults()
+		{
 			item.maxStack = 99;
 			item.useTurn = true;
 			item.autoReuse = true;
@@ -18,7 +18,7 @@ namespace SpectraMod.Items.Banner
 			item.rare = ItemRarityID.Blue;
 			item.value = Item.buyPrice(0, 0, 10, 0);
 			item.createTile = ModContent.TileType<Tiles.MonsterBanner>();
-			item.placeStyle = 0;
+			item.placeStyle = 4;
 		}
-    }
+	}
 }

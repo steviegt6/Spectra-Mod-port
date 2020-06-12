@@ -1,12 +1,11 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 using SpectraMod.Items.Banner;
 
 namespace SpectraMod.NPCs.Slimes
 {
-    public class Nightslime : ModNPC
+    public class Nightslime : SpectraNPC
     {
         public override void SetStaticDefaults()
         {
@@ -14,22 +13,20 @@ namespace SpectraMod.NPCs.Slimes
             Main.npcFrameCount[npc.type] = 2;
         }
 
-        public override void SetDefaults()
+        public override void SafeSetDefaults()
         {
-            npc.Size = new Vector2(32, 22);
-            npc.damage = 15;
             npc.aiStyle = 1;
             animationType = NPCID.BlueSlime;
             banner = npc.type;
-            //bannerItem = ModContent.ItemType<NightslimeBanner>();
-            if (!Main.hardMode) npc.lifeMax = 124;
-            else npc.lifeMax = NPC.downedPlantBoss ? 506 : 248;
-        }
+            bannerItem = ModContent.ItemType<NightslimeBanner>();
 
-        public override void ModifyHitPlayer(Player target, ref int damage, ref bool crit)
-        {
-            if (!Main.hardMode) damage = 16;
-            else damage = NPC.downedPlantBoss ? 84 : 55;
+            npc.damage = Main.hardMode ? 16 : 48;
+
+            if (!Main.hardMode) npc.lifeMax = 62;
+            else npc.lifeMax = NPC.downedPlantBoss ? 248 : 124;
+
+            npc.HitSound = SoundID.NPCHit1;
+            npc.DeathSound = SoundID.NPCDeath1;
         }
 
         public override void NPCLoot()
