@@ -418,7 +418,6 @@ namespace SpectraMod.Items.Currency
 				itemText.name = itemText.name.Substring(0, itemText.name.Length - 1);
 			}
 		}
-#pragma warning restore ChangeMagicNumberToID // Change magic numbers into appropriate ID values
 		#endregion
 		private void HookUpdateItem(ILContext il)
         {
@@ -505,6 +504,7 @@ namespace SpectraMod.Items.Currency
 				}
             });
 		}
+#pragma warning restore ChangeMagicNumberToID // Change magic numbers into appropriate ID values
 
         private void HookSetupShop(ILContext il) // credit to lolxd for helping
         {
