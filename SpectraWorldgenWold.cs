@@ -27,7 +27,7 @@ namespace SpectraMod
         {
             GenAncientHouse();
 
-            int[] itemsToPlaceInWaterChests = { ItemType<Items.Weapons.Sets.Water.WaterSword>(), ItemID.BreathingReed };
+            int[] itemsToPlaceInWaterChests = { ItemType<Items.Weapons.Sets.Water.WaterSword>(), ItemID.BreathingReed, ItemType<Items.Weapons.Sets.Water.WaterBow>() }; //breathing reed is common and pretty useless, easiest to "replace"
             int itemsToPlaceInWaterChestsChoice = 0;
             for (int chestIndex = 0; chestIndex < 1000; chestIndex++)
             {

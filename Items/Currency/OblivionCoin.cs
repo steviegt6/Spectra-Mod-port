@@ -16,7 +16,7 @@ using static Mono.Cecil.Cil.OpCodes;
 
 namespace SpectraMod.Items.Currency
 {
-    public class OblivionCoin : ModItem
+    /*public class OblivionCoin : ModItem
     {
         public override bool Autoload(ref string name)
         {
@@ -30,7 +30,7 @@ namespace SpectraMod.Items.Currency
 
 		#region IL and On Stuff
 #pragma warning disable ChangeMagicNumberToID // Change magic numbers into appropriate ID values
-		/*private void HookGrabItems(ILContext il)
+		private void HookGrabItems(ILContext il)
 		{
 			var c = new ILCursor(il);
 
@@ -50,7 +50,7 @@ namespace SpectraMod.Items.Currency
 				}
 				return num;
 			});
-		}*/
+		}
 
 		private void HookUpdateTime_SpawnTownNPCs(ILContext il)
 		{
@@ -577,5 +577,5 @@ namespace SpectraMod.Items.Currency
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
-    }
+    }*/
 }
