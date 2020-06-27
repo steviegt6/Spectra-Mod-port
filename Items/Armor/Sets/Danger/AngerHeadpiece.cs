@@ -36,10 +36,10 @@ namespace SpectraMod.Items.Armor.Sets.Danger
         {
             SpectraPlayer spectraPlayer = player.GetModPlayer<SpectraPlayer>();
 
-            player.setBonus = "+4 defense" +
+            player.setBonus = "+2 defense" +
                 "\n10% chance not to consume ammo" +
                 "\n5% increased ranged damage";
-            player.statDefense += 4;
+            player.statDefense += 2;
             player.rangedDamage *= 1.04f;
             spectraPlayer.AngerSetBonus = true;
             base.UpdateArmorSet(player);

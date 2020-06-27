@@ -15,7 +15,7 @@ namespace SpectraMod.Items.Armor.Sets.Danger
     {
         public override string Texture => "SpectraMod/Items/Armor/PlaceholderBreastplate";
 
-        public override void SetStaticDefaults() => Tooltip.SetDefault("4% increased ranged damage");
+        public override void SetStaticDefaults() => Tooltip.SetDefault("3% increased ranged damage");
 
         public override void SafeSetDefaults()
         {
@@ -26,7 +26,7 @@ namespace SpectraMod.Items.Armor.Sets.Danger
 
         public override void UpdateEquip(Player player)
         {
-            player.rangedDamage += 0.04f;
+            player.rangedDamage += 0.03f;
             base.UpdateEquip(player);
         }
 
