@@ -34,7 +34,7 @@ namespace SpectraMod.Items
         {
             SpectraPlayer spectraPlayer = player.GetModPlayer<SpectraPlayer>();
 
-            if (spectraPlayer.AngerSetBonus && Main.rand.NextBool(5))
+            if (spectraPlayer.AngerSetBonus && Main.rand.NextBool(10))
                 return false;
             return base.ConsumeAmmo(item, player);
         }
