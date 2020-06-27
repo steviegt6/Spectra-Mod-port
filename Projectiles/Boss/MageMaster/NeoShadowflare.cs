@@ -19,7 +19,6 @@ namespace SpectraMod.Projectiles.Boss.MageMaster
 
         public override void AI()
         {
-            projectile.position += projectile.velocity;
             Dust.NewDust(projectile.TopRight, 4, 64, DustID.Shadowflame);
         }
     }

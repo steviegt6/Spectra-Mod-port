@@ -26,6 +26,12 @@ namespace SpectraMod.Items.Weapons.Sets.Dirt
             item.UseSound = SoundID.Item1;
         }
 
+        public override bool UseItem(Player player)
+        {
+            
+            return true;
+        }
+
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);

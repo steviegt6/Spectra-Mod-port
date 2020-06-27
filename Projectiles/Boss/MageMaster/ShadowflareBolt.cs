@@ -1,7 +1,7 @@
-﻿using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace SpectraMod.Projectiles.Boss.MageMaster
 {
@@ -19,7 +19,6 @@ namespace SpectraMod.Projectiles.Boss.MageMaster
 
         public override void AI()
         {
-            projectile.position += projectile.velocity;
             if (Main.rand.NextBool(6)) Dust.NewDust(projectile.Center, 24, 24, DustID.Shadowflame);
         }
     }
