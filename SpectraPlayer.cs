@@ -137,7 +137,7 @@ namespace SpectraMod
                 switch (PlayerLifeTier)
                 {
                     case SpectraEnums.HealthLevel.CursedLife:
-                        //Main.heart2Texture = ModContent.GetTexture("SpectraMod/ResourceTextures/CursedHeart");
+                        Main.heart2Texture = ModContent.GetTexture("SpectraMod/ResourceTextures/CursedHeart");
                         break;
                     default:
                         break;
@@ -146,7 +146,7 @@ namespace SpectraMod
                 switch (PlayerManaTier)
                 {
                     case SpectraEnums.ManaLevel.LavaMana:
-                        //Main.manaTexture = ModContent.GetTexture("SpectraMod/ResourceTextures/LavaMana");
+                        Main.manaTexture = ModContent.GetTexture("SpectraMod/ResourceTextures/LavaMana");
                         break;
                     default:
                         break;
@@ -177,7 +177,7 @@ namespace SpectraMod
 
         public override TagCompound Save()
         {
-            //if (PlayerLifeTier > SpectraEnums.HealthLevel.LifeCrystal) Main.heart2Texture = ModContent.GetTexture("SpectraMod/ResourceTextures/Heart2");
+            if (PlayerLifeTier > SpectraEnums.HealthLevel.LifeCrystal) Main.heart2Texture = ModContent.GetTexture("Terraria/Heart2");
 
             return new TagCompound() {
                 { "LifeTier", (int)PlayerLifeTier },

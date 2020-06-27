@@ -8,7 +8,6 @@ namespace SpectraMod.Items.Weapons.Sets.Dirt
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Dirt Sword");
             Tooltip.SetDefault("Is that it?");
         }
 
@@ -24,12 +23,6 @@ namespace SpectraMod.Items.Weapons.Sets.Dirt
             item.useAnimation = 30;
             item.autoReuse = false;
             item.UseSound = SoundID.Item1;
-        }
-
-        public override bool UseItem(Player player)
-        {
-            
-            return true;
         }
 
         public override void AddRecipes()
