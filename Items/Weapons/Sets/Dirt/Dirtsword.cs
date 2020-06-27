@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace SpectraMod.Items.Weapons.Sets.Dirt
 {
-    public class Dirtsword : SpectraItem
+    public class DirtSword : SpectraItem
     {
         public override void SetStaticDefaults()
         {
