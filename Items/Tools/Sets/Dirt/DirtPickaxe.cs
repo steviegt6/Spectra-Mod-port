@@ -18,7 +18,7 @@ namespace SpectraMod.Items.Tools.Sets.Dirt
             item.value = Item.sellPrice(0, 0, 0, 1);
             item.rare = ItemRarityID.White;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.damage = 1;
+            item.damage = 2;
             item.melee = true;
             item.knockBack = 1;
             item.useTime = 15;
