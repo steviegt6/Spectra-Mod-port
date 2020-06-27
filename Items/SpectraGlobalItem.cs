@@ -29,5 +29,14 @@ namespace SpectraMod.Items
                 mult = 2;
             base.ModifyWeaponDamage(item, player, ref add, ref mult, ref flat);
         }
+
+        public override bool ConsumeAmmo(Item item, Player player)
+        {
+            SpectraPlayer spectraPlayer = player.GetModPlayer<SpectraPlayer>();
+
+            if (spectraPlayer.AngerSetBonus && Main.rand.NextBool(10))
+                return false;
+            return base.ConsumeAmmo(item, player);
+        }
     }
 }

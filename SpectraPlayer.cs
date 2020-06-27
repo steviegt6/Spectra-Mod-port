@@ -22,6 +22,7 @@ namespace SpectraMod
 
         #region ARMOR_BOOLS
         public bool DirtSetBonus;
+        public bool AngerSetBonus;
         #endregion
 
         public SpectraEnums.HealthLevel PlayerLifeTier = SpectraEnums.HealthLevel.None;
@@ -39,6 +40,7 @@ namespace SpectraMod
             GreaterPygmyNecklaceEffect = false;
             Hated = false;
             DirtSetBonus = false;
+            AngerSetBonus = false;
 
             AllPassive = false;
         }
