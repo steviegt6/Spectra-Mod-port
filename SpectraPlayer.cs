@@ -20,6 +20,10 @@ namespace SpectraMod
         public bool Hated;
         #endregion
 
+        #region ARMOR_BOOLS
+        public bool DirtSetBonus;
+        #endregion
+
         public SpectraEnums.HealthLevel PlayerLifeTier = SpectraEnums.HealthLevel.None;
         public SpectraEnums.ManaLevel PlayerManaTier = SpectraEnums.ManaLevel.None;
 
@@ -34,6 +38,7 @@ namespace SpectraMod
             UnluckyTombEffect = false;
             GreaterPygmyNecklaceEffect = false;
             Hated = false;
+            DirtSetBonus = false;
 
             AllPassive = false;
         }
