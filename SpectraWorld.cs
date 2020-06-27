@@ -13,10 +13,10 @@ namespace SpectraMod
     public class SpectraWorld : ModWorld
     {
         public static bool professionalMode;
+        public static bool IsProfessionalMode;
 
         public override void Initialize()
         {
-            //professionalMode = false;
             base.Initialize();
         }
 
@@ -29,7 +29,8 @@ namespace SpectraMod
 
             return new TagCompound
             {
-                ["downed"] = downed
+                ["downed"] = downed,
+                ["IsProfessionalMode"] = IsProfessionalMode
             };
         }
 
@@ -38,6 +39,8 @@ namespace SpectraMod
             var downed = tag.GetList<string>("downed");
 
             professionalMode = downed.Contains("professionalMode");
+
+            IsProfessionalMode = professionalMode;
 
             base.Load(tag);
         }

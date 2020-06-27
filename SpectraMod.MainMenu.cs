@@ -103,6 +103,7 @@ namespace SpectraMod
             {
                 Main.expertMode = false;
                 SpectraWorld.professionalMode = false;
+                SpectraWorld.IsProfessionalMode = false;
                 Main.PlaySound(10, -1, -1, 1, 1f, 0f);
                 Main.menuMode = 7;
                 if (Main.SettingsUnlock_WorldEvil)
@@ -114,6 +115,7 @@ namespace SpectraMod
             {
                 Main.expertMode = true;
                 SpectraWorld.professionalMode = false;
+                SpectraWorld.IsProfessionalMode = false;
                 Main.PlaySound(10, -1, -1, 1, 1f, 0f);
                 Main.menuMode = 7;
                 if (Main.SettingsUnlock_WorldEvil)
@@ -127,6 +129,7 @@ namespace SpectraMod
                 Main.menuMode = Main.SettingsUnlock_WorldEvil ? -71 : 7;
                 Main.expertMode = true;
                 SpectraWorld.professionalMode = true;
+                SpectraWorld.IsProfessionalMode = true;
             }
             else if (selectedMenu == 4 || flag5)
             {
