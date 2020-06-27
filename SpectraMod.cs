@@ -33,6 +33,13 @@ namespace SpectraMod
 			On.Terraria.GameContent.UI.Elements.UIWorldListItem.DrawSelf += ProfessionalText;
 		}
 
+        public override void Unload()
+        {
+			Instance = null;
+
+            base.Unload();
+        }
+
         private void ProfessionalText(On.Terraria.GameContent.UI.Elements.UIWorldListItem.orig_DrawSelf orig, Terraria.GameContent.UI.Elements.UIWorldListItem self, SpriteBatch spriteBatch)
 		{
 			orig(self, spriteBatch);
