@@ -125,6 +125,7 @@ namespace SpectraMod
             if (selectedMenu == 2)
             {
                 Main.expertMode = false;
+                SpectraWorld.professionalMode = false;
                 Main.PlaySound(10, -1, -1, 1, 1f, 0f);
                 Main.menuMode = 7;
                 if (Main.SettingsUnlock_WorldEvil)
@@ -135,6 +136,7 @@ namespace SpectraMod
             else if (selectedMenu == 3)
             {
                 Main.expertMode = true;
+                SpectraWorld.professionalMode = false;
                 Main.PlaySound(10, -1, -1, 1, 1f, 0f);
                 Main.menuMode = 7;
                 if (Main.SettingsUnlock_WorldEvil)
@@ -147,7 +149,7 @@ namespace SpectraMod
                 Main.PlaySound(10, -1, -1, 1, 1f, 0f);
                 Main.menuMode = Main.SettingsUnlock_WorldEvil ? -71 : 7;
                 Main.expertMode = true;
-                //InteritosWorld.GenkaiMode = true;
+                SpectraWorld.professionalMode = true;
             }
             else if (selectedMenu == 4 || flag5)
             {
