@@ -16,7 +16,7 @@ namespace SpectraMod
 
         public override void Initialize()
         {
-            professionalMode = false;
+            //professionalMode = false;
             base.Initialize();
         }
 
