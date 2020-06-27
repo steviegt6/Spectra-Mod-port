@@ -69,13 +69,16 @@ namespace SpectraMod
 			float num6 = 100f;
 			DrawPanel(spriteBatch, vector, num6);
 
-			bool IsProfessionalMode = tagCompound3.GetBool("IsProfessionalMode");
+			bool? IsProfessionalMode = tagCompound3?.GetBool("IsProfessionalMode");
+
+			if (IsProfessionalMode == null)
+				IsProfessionalMode = false;
 
 			string text;
 
-			if (IsProfessionalMode)
+			if ((bool)IsProfessionalMode)
 				text = "Professional";
-			else if (fileData.IsExpertMode && !IsProfessionalMode)
+			else if (fileData.IsExpertMode && (bool)!IsProfessionalMode)
 				text = Language.GetTextValue("UI.Expert");
 			else
 				text = Language.GetTextValue("UI.Normal");
@@ -83,18 +86,18 @@ namespace SpectraMod
 			float x11 = Main.fontMouseText.MeasureString(text).X;
 			float x10 = num6 * 0.5f - x11 * 0.5f;
 
-			if (IsProfessionalMode)
+			if ((bool)IsProfessionalMode)
 				text = "Professional";
-			else if (fileData.IsExpertMode && !IsProfessionalMode)
+			else if (fileData.IsExpertMode && (bool)!IsProfessionalMode)
 				text = Language.GetTextValue("UI.Expert");
 			else
 				text = Language.GetTextValue("UI.Normal");
 
 			Color difficultyColor;
 
-			if (IsProfessionalMode)
+			if ((bool)IsProfessionalMode)
 				difficultyColor = new Color(255, 0, 0);
-			else if (fileData.IsExpertMode && !IsProfessionalMode)
+			else if (fileData.IsExpertMode && (bool)!IsProfessionalMode)
 				difficultyColor = new Color(217, 143, 244);
 			else
 				difficultyColor = Color.White;
