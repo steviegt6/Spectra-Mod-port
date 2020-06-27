@@ -8,7 +8,6 @@ namespace SpectraMod.Items.Weapons.Sets.Dirt
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Dirt Sword");
             Tooltip.SetDefault("Is that it?");
         }
 
