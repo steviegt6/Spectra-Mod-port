@@ -58,9 +58,10 @@ namespace SpectraMod.Projectiles.Weapons
                 NPC npc = Main.npc[i];
                 if (!npc.friendly && npc.type != NPCID.TargetDummy)
                 {
-                    float shootToX = npc.Center.X - projectile.Center.X;
-                    float shootToY = npc.Center.Y - projectile.Center.Y;
-                    float distance = (float)Math.Sqrt(shootToX * shootToX + shootToY * shootToY);
+                    //float shootToX = npc.Center.X - projectile.Center.X;
+                    //float shootToY = npc.Center.Y - projectile.Center.Y;
+                    Vector2 shootTo = projectile.DirectionTo(npc.Center);
+                    float distance = shootTo.Length();
 
                     if (distance < 300f && !npc.friendly && npc.active)
                     {
@@ -68,11 +69,10 @@ namespace SpectraMod.Projectiles.Weapons
                         lockedOn = true;
                         distance = 3f / distance;
 
-                        shootToX *= distance;
-                        shootToY *= distance;
+                        shootTo *= distance;
 
-                        Vector2 shootTo = new Vector2(shootToX, shootToY);
-                        Vector2 npcDir = Vector2.Normalize(new Vector2(shootToX, shootToY));
+                        //Vector2 shootTo = new Vector2(shootToX, shootToY);
+                        Vector2 npcDir = Vector2.Normalize(shootTo);
                         Vector2 originalDir = Vector2.Normalize(projectile.velocity);
                         Vector2 homingDir = (npcDir + originalDir * 7) / 8;
                         projectile.velocity = homingDir * shootTo.Length();

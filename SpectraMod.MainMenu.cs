@@ -1,14 +1,27 @@
-﻿using Mono.Cecil.Cil;
-using MonoMod.Cil;
-using System.Reflection;
-using Terraria;
-using Terraria.Localization;
+﻿using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using Microsoft.Xna.Framework;
+using System.Reflection;
+using Terraria.IO;
+using Terraria.UI;
+using Terraria.Localization;
+using Terraria.Graphics;
+using Terraria.GameContent.UI.Elements;
+using Terraria.ModLoader.IO;
+using Terraria.Utilities;
+using System.IO;
+using System.Linq;
+using MonoMod.Cil;
+using Mono.Cecil.Cil;
 
 namespace SpectraMod
 {
     public partial class SpectraMod : Mod
     {
+        #region WORLDCREATION
         private void AddProfessionalMode(ILContext il)
         {
             ILCursor c = new ILCursor(il);
@@ -139,5 +152,9 @@ namespace SpectraMod
             }
             Main.clrInput();
         }
+        #endregion
+
+        #region SELECTSCREEN
+        #endregion
     }
 }

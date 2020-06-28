@@ -14,7 +14,9 @@ namespace SpectraMod.Items
         /// <summary>
         /// Use for animated items
         /// </summary>
-        bool ignoreAutoSize;
+        public bool ignoreAutoSize;
+
+        public bool professional;
 
         public virtual void SafeSetDefaults()
         {
@@ -50,6 +52,11 @@ namespace SpectraMod.Items
                         break;
                 }
                 name.overrideColor = customColor;
+            }
+
+            if (professional)
+            {
+                tooltips.Add(new TooltipLine(mod, "Spectra:Professional", "Professional"));
             }
         }
     }
