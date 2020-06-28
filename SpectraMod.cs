@@ -14,6 +14,7 @@ using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 using System.IO;
 using System.Linq;
+using ReLogic.Graphics;
 
 namespace SpectraMod
 {
@@ -31,6 +32,8 @@ namespace SpectraMod
 			IL.Terraria.Main.DrawMenu += AddProfessionalMode;
 
 			On.Terraria.GameContent.UI.Elements.UIWorldListItem.DrawSelf += ProfessionalText;
+			On.Terraria.Main.DrawInterface_35_YouDied += YouDiedL;
+			On.Terraria.Player.DropCoins += DropAllYourCoins;
 		}
 
         public override void Unload()
@@ -40,7 +43,80 @@ namespace SpectraMod
             base.Unload();
         }
 
-        private void ProfessionalText(On.Terraria.GameContent.UI.Elements.UIWorldListItem.orig_DrawSelf orig, Terraria.GameContent.UI.Elements.UIWorldListItem self, SpriteBatch spriteBatch)
+		private int DropAllYourCoins(On.Terraria.Player.orig_DropCoins orig, Terraria.Player self)
+		{
+			Player player = Main.LocalPlayer;
+			int num6 = 0;
+			for (int i = 0; i < 59; i++)
+			{
+				if (player.inventory[i].type >= ItemID.CopperCoin && player.inventory[i].type <= ItemID.PlatinumCoin)
+				{
+					int num5 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, player.inventory[i].type);
+					int num4 = player.inventory[i].stack / 2;
+					if (Main.expertMode)
+					{
+						num4 = (int)((double)player.inventory[i].stack * 0.25);
+					}
+					if (SpectraWorld.professionalMode)
+                    {
+						num4 = (int)((double)player.inventory[i].stack * 0);
+					}
+					num4 = player.inventory[i].stack - num4;
+					player.inventory[i].stack -= num4;
+					if (player.inventory[i].type == ItemID.CopperCoin)
+					{
+						num6 += num4;
+					}
+					if (player.inventory[i].type == ItemID.SilverCoin)
+					{
+						num6 += num4 * 100;
+					}
+					if (player.inventory[i].type == ItemID.GoldCoin)
+					{
+						num6 += num4 * 10000;
+					}
+					if (player.inventory[i].type == ItemID.PlatinumCoin)
+					{
+						num6 += num4 * 1000000;
+					}
+					if (player.inventory[i].stack <= 0)
+					{
+						player.inventory[i] = new Item();
+					}
+					Main.item[num5].stack = num4;
+					Main.item[num5].velocity.Y = (float)Main.rand.Next(-20, 1) * 0.2f;
+					Main.item[num5].velocity.X = (float)Main.rand.Next(-20, 21) * 0.2f;
+					Main.item[num5].noGrabDelay = 100;
+					if (Main.netMode == 1)
+					{
+						NetMessage.SendData(21, -1, -1, null, num5);
+					}
+					if (i == 58)
+					{
+						Main.mouseItem = player.inventory[i].Clone();
+					}
+				}
+			}
+			player.lostCoins = num6;
+			player.lostCoinString = Main.ValueToCoins(player.lostCoins);
+			return num6;
+		}
+
+		private void YouDiedL(On.Terraria.Main.orig_DrawInterface_35_YouDied orig) // method swapping for professional mode just because
+		{
+			if (Terraria.Main.player[Terraria.Main.myPlayer].dead)
+			{
+				string value = Terraria.Lang.inter[38].Value;
+				DynamicSpriteFontExtensionMethods.DrawString(Terraria.Main.spriteBatch, Terraria.Main.fontDeathText, value, new Vector2((float)(Terraria.Main.screenWidth / 2) - Terraria.Main.fontDeathText.MeasureString(value).X / 2f, Terraria.Main.screenHeight / 2 - 20), Terraria.Main.player[Terraria.Main.myPlayer].GetDeathAlpha(Microsoft.Xna.Framework.Color.Transparent), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+				if (Terraria.Main.player[Terraria.Main.myPlayer].lostCoins > 0)
+				{
+					string textValue = SpectraWorld.professionalMode ? "dropped all coins" : Language.GetTextValue("Game.DroppedCoins", Terraria.Main.player[Terraria.Main.myPlayer].lostCoinString);
+					DynamicSpriteFontExtensionMethods.DrawString(Terraria.Main.spriteBatch, Terraria.Main.fontMouseText, textValue, new Vector2((float)(Terraria.Main.screenWidth / 2) - Terraria.Main.fontMouseText.MeasureString(textValue).X / 2f, Terraria.Main.screenHeight / 2 + 30), Terraria.Main.player[Terraria.Main.myPlayer].GetDeathAlpha(Microsoft.Xna.Framework.Color.Transparent), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+				}
+			}
+		}
+
+		private void ProfessionalText(On.Terraria.GameContent.UI.Elements.UIWorldListItem.orig_DrawSelf orig, Terraria.GameContent.UI.Elements.UIWorldListItem self, SpriteBatch spriteBatch)
 		{
 			orig(self, spriteBatch);
 
@@ -70,7 +146,7 @@ namespace SpectraMod
 			CalculatedStyle dimensions = worldIcon.GetDimensions();
 			float num7 = dimensions.X + dimensions.Width;
 			Color color = fileData.IsValid ? Color.White : Color.Red;
-			Utils.DrawBorderString(spriteBatch, fileData.Name, new Vector2(num7 + 6f, dimensions.Y - 2f), color);
+            Terraria.Utils.DrawBorderString(spriteBatch, fileData.Name, new Vector2(num7 + 6f, dimensions.Y - 2f), color);
 			spriteBatch.Draw(TextureManager.Load("Images/UI/Divider"), new Vector2(num7, innerDimensions.Y + 21f), null, Color.White, 0f, Vector2.Zero, new Vector2((self.GetDimensions().X + self.GetDimensions().Width - num7) / 8f, 1f), SpriteEffects.None, 0f);
 			Vector2 vector = new Vector2(num7 + 6f, innerDimensions.Y + 29f);
 			float num6 = 100f;
@@ -90,7 +166,7 @@ namespace SpectraMod
 			else
 				text = Language.GetTextValue("UI.Normal");
 
-			float x11 = Main.fontMouseText.MeasureString(text).X;
+			float x11 = Terraria.Main.fontMouseText.MeasureString(text).X;
 			float x10 = num6 * 0.5f - x11 * 0.5f;
 
 			if ((bool)IsProfessionalMode)
@@ -109,7 +185,7 @@ namespace SpectraMod
 			else
 				difficultyColor = Color.White;
 
-			Utils.DrawBorderString(spriteBatch, text, vector + new Vector2(x10, 3f), difficultyColor);
+            Terraria.Utils.DrawBorderString(spriteBatch, text, vector + new Vector2(x10, 3f), difficultyColor);
 
 			vector.X += num6 + 5f;
 
@@ -122,10 +198,10 @@ namespace SpectraMod
 			DrawPanel(spriteBatch, vector, num5);
 
 			string textValue3 = Language.GetTextValue("UI.WorldSizeFormat", fileData.WorldSizeName);
-			float x9 = Main.fontMouseText.MeasureString(textValue3).X;
+			float x9 = Terraria.Main.fontMouseText.MeasureString(textValue3).X;
 			float x8 = num5 * 0.5f - x9 * 0.5f;
 
-			Utils.DrawBorderString(spriteBatch, textValue3, vector + new Vector2(x8, 3f), Color.White);
+            Terraria.Utils.DrawBorderString(spriteBatch, textValue3, vector + new Vector2(x8, 3f), Color.White);
 
 			vector.X += num5 + 5f;
 			float num4 = innerDimensions.X + innerDimensions.Width - vector.X;
@@ -134,10 +210,10 @@ namespace SpectraMod
 
 			string arg = (!GameCulture.English.IsActive) ? fileData.CreationTime.ToShortDateString() : fileData.CreationTime.ToString("d MMMM yyyy");
 			string textValue2 = Language.GetTextValue("UI.WorldCreatedFormat", arg);
-			float x7 = Main.fontMouseText.MeasureString(textValue2).X;
+			float x7 = Terraria.Main.fontMouseText.MeasureString(textValue2).X;
 			float x6 = num4 * 0.5f - x7 * 0.5f;
 
-			Utils.DrawBorderString(spriteBatch, textValue2, vector + new Vector2(x6, 3f), Color.White);
+            Terraria.Utils.DrawBorderString(spriteBatch, textValue2, vector + new Vector2(x6, 3f), Color.White);
 
 			vector.X += num4 + 5f;
 		}
@@ -166,17 +242,17 @@ namespace SpectraMod
 
 		public override void AddRecipeGroups()
 		{
-			RecipeGroup HardmodeEvilMaterial = new RecipeGroup(() => "Any hardmode evil material", new int[] {
+            Terraria.RecipeGroup HardmodeEvilMaterial = new Terraria.RecipeGroup(() => "Any hardmode evil material", new int[] {
 				ItemID.CursedFlame,
 				ItemID.Ichor
 			});
-			RecipeGroup.RegisterGroup("Spectra:HardmodeEvil", HardmodeEvilMaterial);
+            Terraria.RecipeGroup.RegisterGroup("Spectra:HardmodeEvil", HardmodeEvilMaterial);
 
-			RecipeGroup EvilPick = new RecipeGroup(() => "Any evil pickaxe", new int[] {
+            Terraria.RecipeGroup EvilPick = new Terraria.RecipeGroup(() => "Any evil pickaxe", new int[] {
 				ItemID.NightmarePickaxe,
 				ItemID.DeathbringerPickaxe
 			});
-			RecipeGroup.RegisterGroup("Spectra:EvilPick", EvilPick);
+            Terraria.RecipeGroup.RegisterGroup("Spectra:EvilPick", EvilPick);
 		}
 	}
 
