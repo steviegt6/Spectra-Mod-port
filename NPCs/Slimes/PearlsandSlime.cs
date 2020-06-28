@@ -35,6 +35,14 @@ namespace SpectraMod.NPCs.Slimes
             SpectraHelper.AttemptSlimeStaff(npc, 485);
         }
 
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (SpectraWorld.professionalMode)
+                if (Main.rand.NextBool(3))
+                    target.AddBuff(BuffID.Slimed, Main.rand.Next(3, 11));
+            base.OnHitPlayer(target, damage, crit);
+        }
+
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             return (spawnInfo.player.ZoneDesert && spawnInfo.player.ZoneHoly) ? SpawnCondition.OverworldDayDesert.Chance * 1.5f : 0f;

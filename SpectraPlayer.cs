@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using SpectraMod.Items.Consumables;
+using SpectraMod.NPCs.Slimes;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -180,6 +181,40 @@ namespace SpectraMod
                 player.lifeRegenTime = 0;
                 player.lifeRegen -= 4;
             }
+        }
+
+        public override void OnHitByNPC(NPC npc, int damage, bool crit)
+        {
+            switch (npc.type)
+            {
+                case 1: //should cover blue slime + all net id slimes
+                case 50:
+                case 59:
+                case 71:
+                case 81:
+                case 121:
+                case 122:
+                case 138:
+                case 141:
+                case 147:
+                case 183:
+                case 184:
+                case 204:
+                case 224:
+                case 225:
+                case 302:
+                case 333:
+                case 334:
+                case 335:
+                case 336:
+                case 535:
+                case 537:
+                    if (SpectraWorld.professionalMode)
+                        if (Main.rand.NextBool(3))
+                            player.AddBuff(BuffID.Slimed, Main.rand.Next(3, 11));
+                    break;
+            }
+            base.OnHitByNPC(npc, damage, crit);
         }
 
         public override TagCompound Save()

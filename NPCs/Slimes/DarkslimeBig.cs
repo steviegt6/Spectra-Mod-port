@@ -29,6 +29,18 @@ namespace SpectraMod.NPCs.Slimes
             npc.DeathSound = SoundID.NPCDeath1;
         }
 
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (SpectraWorld.professionalMode)
+            {
+                if (Main.rand.NextBool(3))
+                    target.AddBuff(BuffID.Slimed, Main.rand.Next(3, 11));
+                if (Main.rand.NextBool(5))
+                    target.AddBuff(BuffID.Darkness, Main.rand.Next(2, 4));
+            }
+            base.OnHitPlayer(target, damage, crit);
+        }
+
         public override void NPCLoot()
         {
             int amount = Main.expertMode ? 4 : 3;

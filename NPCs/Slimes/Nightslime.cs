@@ -35,6 +35,18 @@ namespace SpectraMod.NPCs.Slimes
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Gel.BlackGel>(), amount);
         }
 
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (SpectraWorld.professionalMode)
+            {
+                if (Main.rand.NextBool(3))
+                    target.AddBuff(BuffID.Slimed, Main.rand.Next(3, 11));
+                if (Main.rand.NextBool(5))
+                    target.AddBuff(BuffID.Darkness, Main.rand.Next(2, 4));
+            }
+            base.OnHitPlayer(target, damage, crit);
+        }
+
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             return (SpawnCondition.OverworldNightMonster.Chance > 0f) ? SpawnCondition.OverworldNightMonster.Chance / 2.75f : 0f;
