@@ -20,6 +20,28 @@ namespace SpectraMod
             base.Initialize();
         }
 
+        public override void PreUpdate()
+        {
+            if (professionalMode)
+            {
+                Main.expertDamage = 3f;
+                Main.expertKnockBack = 0.8f;
+                Main.expertDebuffTime = 3f;
+                Main.expertLife = 3f;
+                Main.expertNPCDamage = 2.5f;
+            }
+            else
+            {
+                Main.expertDamage = 2f;
+                Main.expertKnockBack = 0.9f;
+                Main.expertDebuffTime = 2f;
+                Main.expertLife = 2f;
+                Main.expertNPCDamage = 1.5f;
+            }
+
+            base.PreUpdate();
+        }
+
         public override TagCompound Save()
         {
             var downed = new List<string>();
