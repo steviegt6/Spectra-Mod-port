@@ -110,7 +110,8 @@ namespace SpectraMod
 				DynamicSpriteFontExtensionMethods.DrawString(Terraria.Main.spriteBatch, Terraria.Main.fontDeathText, value, new Vector2((float)(Terraria.Main.screenWidth / 2) - Terraria.Main.fontDeathText.MeasureString(value).X / 2f, Terraria.Main.screenHeight / 2 - 20), Terraria.Main.player[Terraria.Main.myPlayer].GetDeathAlpha(Microsoft.Xna.Framework.Color.Transparent), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
 				if (Terraria.Main.player[Terraria.Main.myPlayer].lostCoins > 0)
 				{
-					string textValue = SpectraWorld.professionalMode ? "dropped all coins" : Language.GetTextValue("Game.DroppedCoins", Terraria.Main.player[Terraria.Main.myPlayer].lostCoinString);
+					string textValue = SpectraWorld.professionalMode ? "dropped all (" + Terraria.Main.player[Terraria.Main.myPlayer].lostCoinString + ") coins" : Language.GetTextValue("Game.DroppedCoins", Terraria.Main.player[Terraria.Main.myPlayer].lostCoinString);
+					string coinText = SpectraWorld.professionalMode ? "(" + Terraria.Main.player[Terraria.Main.myPlayer].lostCoinString + ")" : "";
 					DynamicSpriteFontExtensionMethods.DrawString(Terraria.Main.spriteBatch, Terraria.Main.fontMouseText, textValue, new Vector2((float)(Terraria.Main.screenWidth / 2) - Terraria.Main.fontMouseText.MeasureString(textValue).X / 2f, Terraria.Main.screenHeight / 2 + 30), Terraria.Main.player[Terraria.Main.myPlayer].GetDeathAlpha(Microsoft.Xna.Framework.Color.Transparent), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
 				}
 			}

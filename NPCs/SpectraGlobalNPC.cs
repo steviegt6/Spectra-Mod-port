@@ -10,6 +10,27 @@ namespace SpectraMod.NPCs
 {
     public class SpectraGlobalNPC : GlobalNPC
     {
+        public override bool InstancePerEntity => true;
+
+        public bool npcLooted = false;
+
+        public override void NPCLoot(NPC npc)
+        {
+            if (SpectraWorld.professionalMode)
+            {
+                if (npc.boss)
+                {
+                    if (!npcLooted)
+                    {
+                        npcLooted = true;
+                        npc.NPCLoot();
+                    }
+                }
+            }
+
+            base.NPCLoot(npc);
+        }
+
         public override void AI(NPC npc)
         {
             switch (npc.type) // sorry for the magic numbers, cba to change them to their respective npc ids
