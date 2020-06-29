@@ -1,5 +1,6 @@
 ﻿using Terraria.ID;
 using Microsoft.Xna.Framework;
+using Terraria.ModLoader;
 
 namespace SpectraMod.Projectiles.Weapons.Prism.Permafrost
 {
@@ -9,7 +10,7 @@ namespace SpectraMod.Projectiles.Weapons.Prism.Permafrost
 
         public override float AimResponsiveness() => 0.075f;
 
-        public override int BeamType() => 1;
+        public override int BeamType() => ModContent.ProjectileType<PermafrostBeam>();
 
         public override float ChargeTime() => 220f;
 
@@ -25,7 +26,7 @@ namespace SpectraMod.Projectiles.Weapons.Prism.Permafrost
 
         public override int NumBeams() => 4;
 
-        public override int SoundInterval() => 10;
+        public override int SoundInterval() => 60;
 
         public override float DamageMulti() => 1f;
     }

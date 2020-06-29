@@ -7,9 +7,12 @@ namespace SpectraMod.Items.ProModeItems.HardMode
 {
     public class PermafrostCrystal : SpectraItem
     {
+        public override string Texture => "Terraria/Item_" + ItemID.LastPrism;
+
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("Fire a beam of festive energy");
+            ItemID.Sets.ItemNoGravity[item.type] = true;
         }
 
         public override void SafeSetDefaults()
@@ -18,8 +21,8 @@ namespace SpectraMod.Items.ProModeItems.HardMode
 
             item.CloneDefaults(ItemID.LastPrism);
             item.magic = true;
-            item.mana = 14;
-            item.damage = 70;
+            item.mana = 15;
+            item.damage = 68;
             item.crit = 3;
             item.useTime = 15;
             item.useAnimation = 15;

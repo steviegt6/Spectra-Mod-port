@@ -11,6 +11,11 @@ namespace SpectraMod
         public static bool professionalMode;
         public static bool IsProfessionalMode;
 
+        public override void PreUpdate()
+        {
+            AnimatedColor.Update();
+        }
+
         public override void Initialize()
         {
             base.Initialize();

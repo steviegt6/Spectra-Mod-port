@@ -29,6 +29,6 @@ namespace SpectraMod.Projectiles.Weapons.Prism.Harvest
 
         protected override float BeamColorSaturation() => 7f;
 
-        protected override int HitCD() => 17;
+        protected override int HitCD() => 20;
     }
 }

@@ -83,7 +83,7 @@ namespace SpectraMod.Projectiles.Weapons.Prism
 		private float PiBeamDivisor;
 
 		// This property encloses the internal AI variable projectile.ai[0]. It makes the code easier to read.
-		private float BeamID
+		public float BeamID
 		{
 			get => projectile.ai[0];
 			set => projectile.ai[0] = value;
