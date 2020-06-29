@@ -24,7 +24,7 @@ namespace SpectraMod.Projectiles.Weapons.Prism.Harvest
 
         public override int NumBeams() => 3;
 
-        public override int SoundInterval() => 10;
+        public override int SoundInterval() => 30;
 
         public override Color DrawColor() => Color.Orange;
 

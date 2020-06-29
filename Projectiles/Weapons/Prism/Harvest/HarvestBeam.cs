@@ -9,9 +9,9 @@ namespace SpectraMod.Projectiles.Weapons.Prism.Harvest
 
         protected override float BeamColorHue() => 0.085f;
 
-        protected override float BeamHitboxCollisionWidth() => 20f;
-
         protected override float BeamHueVariance() => 0.25f;
+
+        protected override float BeamHitboxCollisionWidth() => 20f;
 
         protected override float BeamLightBrightness() => 0.75f;
 
@@ -29,6 +29,6 @@ namespace SpectraMod.Projectiles.Weapons.Prism.Harvest
 
         protected override float BeamColorSaturation() => 7f;
 
-        protected override int HitCD() => 17;
+        protected override int HitCD() => 20;
     }
 }

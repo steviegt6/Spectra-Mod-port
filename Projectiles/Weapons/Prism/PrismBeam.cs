@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.ComponentModel;
 using System.IO;
 using Terraria;
 using Terraria.Enums;
@@ -83,7 +82,7 @@ namespace SpectraMod.Projectiles.Weapons.Prism
 		private float PiBeamDivisor;
 
 		// This property encloses the internal AI variable projectile.ai[0]. It makes the code easier to read.
-		private float BeamID
+		public float BeamID
 		{
 			get => projectile.ai[0];
 			set => projectile.ai[0] = value;
@@ -257,7 +256,7 @@ namespace SpectraMod.Projectiles.Weapons.Prism
 			return MathHelper.Lerp(1f, MaxDamageMultiplier(), f);
 		}
 
-		private float PerformBeamHitscan(Projectile prism, bool fullCharge)
+		public virtual float PerformBeamHitscan(Projectile prism, bool fullCharge)
 		{
 			// By default, the hitscan interpolation starts at the projectile's center.
 			// If the host Prism is fully charged, the interpolation starts at the Prism's center instead.
@@ -363,7 +362,7 @@ namespace SpectraMod.Projectiles.Weapons.Prism
 		private void ProduceBeamDust(Color beamColor)
 		{
 			// Create one dust per frame a small distance from where the beam ends.
-			/*const int type = 15;
+			const int type = DustID.AmberBolt;
 			Vector2 endPosition = projectile.Center + projectile.velocity * (BeamLength - 14.5f * projectile.scale);
 
 			// Main.rand.NextBool is used to give a 50/50 chance for the angle to point to the left or right.
@@ -381,7 +380,7 @@ namespace SpectraMod.Projectiles.Weapons.Prism
 			{
 				dust.velocity *= projectile.scale;
 				dust.scale *= projectile.scale;
-			}*/
+			}
 		}
 
 		private void ProduceWaterRipples(Vector2 beamDims)
