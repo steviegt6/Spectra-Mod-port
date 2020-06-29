@@ -130,7 +130,6 @@ namespace SpectraMod.Projectiles.Weapons.Prism
 
 		public override void AI()
 		{
-			Main.NewText("D");
 			PiBeamDivisor = MathHelper.Pi / Parent().NumBeams();
 			// If something has gone wrong with either the beam or the host Prism, destroy the beam.
 			Projectile hostPrism = Main.projectile[(int)HostPrismIndex];
