@@ -1,7 +1,8 @@
-﻿using SpectraMod.Projectiles.Weapons.Prism.Harvest;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
+using SpectraMod.Projectiles.Weapons.Prism.Harvest;
 using static Terraria.ModLoader.ModContent;
+
 namespace SpectraMod.Items.ProModeItems.HardMode
 {
     public class HarvestCrystal : SpectraItem
