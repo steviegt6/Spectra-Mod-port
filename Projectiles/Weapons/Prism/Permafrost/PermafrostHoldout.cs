@@ -24,7 +24,7 @@ namespace SpectraMod.Projectiles.Weapons.Prism.Permafrost
 
         public override int NumAnimationFrames() => 5;
 
-        public override int NumBeams() => 4;
+        public override int NumBeams() => 3;
 
         public override int SoundInterval() => 60;
 

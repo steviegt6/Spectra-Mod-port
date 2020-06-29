@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace SpectraMod.Items.Boss.MageMaster
 {
-    class ShadowToken
+    public class ShadowToken : SpectraItem
     {
-        //TODO: this lol
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+        }
+        public override void SafeSetDefaults()
+        {
+            base.SafeSetDefaults();
+        }
     }
 }
